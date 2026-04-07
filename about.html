@@ -642,16 +642,6 @@
             transform: translateX(4px);
         }
 
-        /* ── Footer ───────────────────────────────────── */
-        .page-footer {
-            margin-top: 0;
-            padding: 64px 48px;
-            border-top: 1px solid var(--color-outline-variant);
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-        }
-
         /* ── Topbar nav (intra-page) ────────────────────── */
         .topbar-nav {
             display: flex;
@@ -702,6 +692,185 @@
             border-bottom: 1px solid var(--color-outline-variant);
             transition: background 0.3s ease, border-color 0.3s ease;
         }
+
+        /* ── Responsividad Local (about.html) ────────────────── */
+        /* TABLET (max 1024px) */
+        @media screen and (max-width: 1024px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            .hero-headline {
+                font-size: 5rem;
+            }
+            .valor-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .valor-card:nth-child(3) {
+                grid-column: span 2;
+                border-top: 1px solid var(--color-outline-variant);
+                border-right: none;
+            }
+            .skill-grid, .skill-grid-3 {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .archive-desc {
+                max-width: 100%;
+                text-align: left;
+            }
+            .archive-item-right {
+                flex-direction: column-reverse; /* Badge arriba de desc */
+                align-items: flex-end;
+                gap: 16px;
+            }
+        }
+
+        /* MÓVIL Y TABLET PEQUEÑA (max 768px) */
+        @media screen and (max-width: 768px) {
+            /* Fix topbar-nav overriding base.css via local specificity */
+            .topbar-nav {
+                display: none !important;
+            }
+            
+            /* Reset main hardcoded paddings */
+            main {
+                padding-top: 96px !important;
+                padding-left: 0 !important;
+            }
+            .about-hero {
+                padding: 0 24px;
+                padding-bottom: 48px !important;
+            }
+            .hero-bg-word {
+                font-size: 6rem;
+                top: 0;
+                left: 0;
+            }
+            .hero-headline {
+                font-size: 4rem; /* Better mobile fit */
+            }
+            .quote-card {
+                padding: 32px;
+                margin-top: 24px;
+            }
+            .quote-card::before {
+                width: 36px;
+                height: 36px;
+                font-size: 1.2rem;
+                top: -12px;
+                right: -12px;
+            }
+            .valor-section {
+                padding: 64px 24px;
+            }
+            .section-title {
+                font-size: 2.2rem;
+            }
+            .valor-grid {
+                grid-template-columns: 1fr;
+            }
+            .valor-card, .valor-card:nth-child(3) {
+                grid-column: span 1;
+                border-right: none;
+                border-top: none;
+                border-bottom: 1px solid var(--color-outline-variant);
+            }
+            .valor-card:last-child {
+                border-bottom: none;
+            }
+            .bridge-callout {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 32px 24px;
+                gap: 24px;
+            }
+            .bridge-label {
+                font-size: 2.5rem;
+            }
+            .bridge-text {
+                text-align: left;
+            }
+            .skill-matrix {
+                padding: 64px 24px;
+            }
+            .skill-matrix-bg {
+                font-size: 8rem;
+                transform: translate(-20px, -20px);
+            }
+            .skill-matrix-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 16px;
+                margin-bottom: 32px;
+            }
+            .skill-matrix-header h2 {
+                font-size: 2rem;
+            }
+            .skill-grid, .skill-grid-3 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .skill-ctas {
+                flex-direction: column;
+            }
+            .btn-skill-cta, .btn-skill-cta-outline {
+                width: 100%;
+                justify-content: center;
+            }
+            .case-archive-list {
+                padding: 64px 24px;
+            }
+            .archive-header {
+                flex-direction: column;
+                gap: 16px;
+                align-items: flex-start;
+                margin-bottom: 24px;
+            }
+            .archive-header h2 {
+                font-size: 2.2rem;
+            }
+            .archive-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 24px;
+                padding: 24px 0;
+            }
+            .archive-item-left {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 16px;
+            }
+            .archive-item-right {
+                flex-direction: row; 
+                flex-wrap: wrap;
+                align-items: center;
+                justify-content: space-between;
+                width: 100%;
+            }
+            .archive-desc {
+                order: 2; /* Move description to bottom */
+                flex-basis: 100%;
+                margin-top: 16px;
+            }
+            .archive-badge {
+                order: 1; /* Keep badge top */
+            }
+            .archive-arrow {
+                order: 1;
+            }
+        }
+
+        /* SMARTPHONES PEQUEÑOS (max 480px) */
+        @media screen and (max-width: 480px) {
+            .hero-headline {
+                font-size: 3rem;
+            }
+            .skill-grid {
+                grid-template-columns: 1fr; /* 1 col layout down to minimums */
+            }
+            .valor-num {
+                font-size: 3rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -738,16 +907,36 @@
     <!-- Top App Bar -->
     <header class="topbar" id="topbar">
         <div class="topbar-title">PORTAFOLIO_PS</div>
-        <nav class="topbar-nav" aria-label="Navegación interna">
+        <nav class="desktop-nav topbar-nav" aria-label="Navegación interna">
             <a href="#propuesta" class="topbar-nav-link">Propuesta</a>
             <a href="#stack" class="topbar-nav-link">Stack</a>
             <a href="#formacion" class="topbar-nav-link">Formación</a>
         </nav>
-        <div style="display: flex; align-items: center; gap: 24px;">
-            <span class="material-symbols-outlined" style="cursor: pointer;">dark_mode</span>
+        <div class="topbar-actions">
+            <span class="material-symbols-outlined theme-toggle" style="cursor: pointer;">dark_mode</span>
             <button class="btn-connect" onclick="window.location.href='experience.html#contacto'">Contactar</button>
+            <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú">
+                <span class="material-symbols-outlined">menu</span>
+            </button>
         </div>
     </header>
+
+    <!-- Mobile Navigation Drawer -->
+    <div class="mobile-nav-overlay" id="mobile-nav-overlay"></div>
+    <nav class="mobile-nav-drawer" id="mobile-nav-drawer">
+        <div class="mobile-nav-header">
+            <div class="sidenav-logo">PS</div>
+            <button class="menu-close" id="menu-close" aria-label="Cerrar menú">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+        </div>
+        <div class="mobile-nav-links">
+            <a href="index.html" class="mobile-nav-link">Inicio</a>
+            <a href="about.html" class="mobile-nav-link active">Sobre Mí</a>
+            <a href="proyectos.html" class="mobile-nav-link">Proyectos</a>
+            <a href="experience.html" class="mobile-nav-link">Experiencia</a>
+        </div>
+    </nav>
 
     <!-- Main Content Area -->
     <main style="padding-top: 128px; padding-left: 112px;">
@@ -1089,9 +1278,10 @@
             </div>
         </section>
 
-        <!-- Footer -->
-        <footer class="page-footer">
-            <div>
+        <!-- Footer Area -->
+        <footer>
+            <div class="footer-bg-text">PORTAFOLIO</div>
+            <div style="position: relative; z-index: 10;">
                 <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px;">
                     <span style="background: var(--color-primary); color: #0600a5; width: 32px; height: 32px; display: inline-flex; align-items: center; justify-content: center; font-family: var(--font-headline); font-size: 11px; font-weight: 900; flex-shrink: 0;">NW</span>
                     <span style="font-family: var(--font-headline); font-size: 1rem; font-weight: 900; color: var(--color-primary); text-transform: uppercase; letter-spacing: 0.05em;">NexoWeb</span>
@@ -1103,9 +1293,9 @@
                     <a href="https://wa.me/56997236064?text=Hola%20Pedro%2C%20estuve%20viendo%20tu%20portafolio%20y%20me%20interesa%20tu%20perfil%20h%C3%ADbrido%20(Tech%2BCX).%20Me%20gustar%C3%ADa%20conversar%20contigo." target="_blank" rel="noopener noreferrer" style="font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase;">WhatsApp</a>
                 </div>
             </div>
-            <div style="text-align: right;">
-                <p style="font-family: var(--font-headline); font-size: 4rem; font-weight: 900; color: var(--color-tertiary); text-transform: uppercase; line-height: 1;">Trabajemos<br>Juntos</p>
-                <p style="font-family: var(--font-headline); font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--color-primary); margin-top: 16px;">Santiago, Chile · Remoto / Híbrido</p>
+            <div style="position: relative; z-index: 10; text-align: right;">
+                <div class="footer-title">Trabajemos<br>Juntos</div>
+                <p class="footer-subtitle">Santiago, Chile · Remoto / Híbrido</p>
             </div>
         </footer>
     </main>

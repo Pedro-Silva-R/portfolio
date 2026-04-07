@@ -323,7 +323,7 @@
             padding-top: 16px;
             margin-top: auto;
             display: flex;
-            justify-content: space-between;
+            justify-content: flex-end;
             align-items: center;
             gap: 16px;
         }
@@ -499,6 +499,127 @@
         .hidden-by-filter {
             display: none !important;
         }
+
+        /* ── Responsividad Local (proyectos.html) ────────────── */
+        /* TABLET (max 1024px) */
+        @media screen and (max-width: 1024px) {
+            .project-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .po-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .card-hero, .card-md, .card-md-5, .card-md-7, .card-half {
+                grid-column: span 1 !important;
+            }
+        }
+
+        /* MÓVIL Y TABLET PEQUEÑA (max 768px) */
+        @media screen and (max-width: 768px) {
+            main {
+                padding-top: 96px !important;
+                padding-left: 0 !important;
+            }
+            
+            .topbar-nav {
+                display: none !important;
+            }
+
+            .projects-hero {
+                padding: 0 24px 64px;
+            }
+            .hero-headline {
+                font-size: 4rem; 
+                margin-bottom: 24px;
+            }
+            .hero-inner {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .status-box {
+                min-width: 100%;
+                margin-top: 16px;
+            }
+            .filter-bar {
+                padding: 0 24px;
+                overflow-x: auto;
+                white-space: nowrap;
+                flex-wrap: nowrap;
+            }
+            .filter-btn {
+                font-size: 10px;
+                padding: 16px 16px;
+            }
+
+            .project-grid {
+                grid-template-columns: 1fr;
+                padding: 0 24px;
+            }
+            .project-card {
+                flex-direction: column !important;
+                grid-column: span 1 !important; /* Mata el span 12 inline de AcceMap */
+            }
+            .project-card > div[style*="width: 42%"],
+            .project-card > div[style*="width: 280px"],
+            .card-img {
+                width: 100% !important;
+                border-right: none !important;
+                border-bottom: 1px solid var(--color-outline-variant) !important;
+            }
+
+            /* Fix para el inner-layout de PaulaLand y generalizaciones horizontales */
+            .project-card > div[style*="display: flex"] {
+                flex-direction: column !important;
+                gap: 24px !important;
+            }
+
+            .project-card .card-body {
+                flex-direction: column !important;
+                align-items: stretch !important;
+                gap: 24px !important;
+                padding: 24px;
+            }
+            .card-title {
+                font-size: 1.8rem !important;
+            }
+            .card-desc {
+                margin-bottom: 12px;
+            }
+
+            .card-paulaland {
+                padding: 0px !important;
+            }
+
+            .card-paulaland-content {
+                padding: 24px !important;
+            }
+
+            .card-sofia {
+                width: 100% !important;
+                height: auto !important;
+                border-right: none !important;
+                border-bottom: 1px solid var(--color-outline-variant) !important;
+            }
+
+            .section-divider {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 48px 24px 32px;
+                gap: 16px;
+            }
+            .divider-rule {
+                width: 100%;
+            }
+
+            .po-grid {
+                grid-template-columns: 1fr;
+                padding: 0 24px;
+            }
+            
+            .cta-section {
+                padding: 64px 24px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -535,15 +656,35 @@
     <!-- Top App Bar -->
     <header class="topbar" id="topbar">
         <div class="topbar-title">PORTAFOLIO_PS</div>
-        <nav class="topbar-nav" aria-label="Filtrar proyectos">
+        <nav class="desktop-nav topbar-nav" aria-label="Filtrar proyectos">
             <a href="#section-dev" class="topbar-nav-link">Frontend</a>
             <a href="#section-po" class="topbar-nav-link">Product Owner</a>
         </nav>
-        <div style="display: flex; align-items: center; gap: 24px;">
-            <span class="material-symbols-outlined" style="cursor: pointer;">dark_mode</span>
+        <div class="topbar-actions">
+            <span class="material-symbols-outlined theme-toggle" style="cursor: pointer;">dark_mode</span>
             <button class="btn-connect" onclick="window.location.href='experience.html#contacto'">Contactar</button>
+            <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú">
+                <span class="material-symbols-outlined">menu</span>
+            </button>
         </div>
     </header>
+
+    <!-- Mobile Navigation Drawer -->
+    <div class="mobile-nav-overlay" id="mobile-nav-overlay"></div>
+    <nav class="mobile-nav-drawer" id="mobile-nav-drawer">
+        <div class="mobile-nav-header">
+            <div class="sidenav-logo">PS</div>
+            <button class="menu-close" id="menu-close" aria-label="Cerrar menú">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+        </div>
+        <div class="mobile-nav-links">
+            <a href="index.html" class="mobile-nav-link">Inicio</a>
+            <a href="about.html" class="mobile-nav-link">Sobre Mí</a>
+            <a href="proyectos.html" class="mobile-nav-link active">Proyectos</a>
+            <a href="experience.html" class="mobile-nav-link">Experiencia</a>
+        </div>
+    </nav>
 
     <main style="padding-top: 128px; padding-left: 112px;">
         <!-- Glow deco -->
@@ -583,7 +724,7 @@
                 Todos <span class="filter-count">8</span>
             </button>
             <button class="filter-btn" data-filter="dev">
-                Desarrollo Frontend <span class="filter-count">5</span>
+                Frontend <span class="filter-count">5</span>
             </button>
             <button class="filter-btn" data-filter="po">
                 Product Owner <span class="filter-count">3</span>
@@ -607,13 +748,13 @@
                 <!-- ── 01 · PaulaLand PROTAGONISTA (span 8) ── -->
                 <div class="project-card card-hero" data-cat="dev">
                     <div class="pixel-grid" style="position: absolute; inset: 0; opacity: 0.15; pointer-events: none;"></div>
-                    <div style="position: relative; z-index: 10; padding: 40px; display: flex; gap: 40px; flex: 1;">
+                    <div class="card-paulaland" style="position: relative; z-index: 10; padding: 40px; display: flex; gap: 40px; flex: 1;">
                         <!-- Imagen preview -->
                         <div class="card-img" style="width: 48%; aspect-ratio: 16/9; border-bottom: none; border-right: 1px solid var(--color-outline-variant); flex-shrink: 0; border-radius: 0; background: var(--color-surface-high);">
                             <img src="img/projects/paulaland.png" alt="PaulaLand preview" style="width: 100%; height: 100%; object-fit: cover; opacity: 0.9; transition: opacity 0.3s ease;" loading="lazy">
                         </div>
                         <!-- Contenido -->
-                        <div style="flex: 1; display: flex; flex-direction: column; justify-content: space-between;">
+                        <div class="card-paulaland-content" style="flex: 1; display: flex; flex-direction: column; justify-content: space-between;">
                             <div>
                                 <span class="card-badge badge-dev">
                                     <span class="badge-dot"></span>PLATAFORMA WEB · DESTACADO
@@ -632,7 +773,6 @@
                                 </div>
                             </div>
                             <div class="card-footer">
-                                <span class="card-domain">paulaland.cl</span>
                                 <a href="https://paulaland.cl/" class="card-link" target="_blank" rel="noopener noreferrer" title="Ver PaulaLand">
                                     <span>Ver Proyecto</span>
                                     <span class="material-symbols-outlined" style="font-size: 18px;">arrow_outward</span>
@@ -645,7 +785,7 @@
                 <!-- ── 02 · Santa Sofía (span 4) ── -->
                 <div class="project-card card-md" data-cat="dev">
                     <!-- Banner imagen slim -->
-                    <div style="width: 100%; height: 90px; overflow: hidden; border-bottom: 1px solid var(--color-outline-variant); flex-shrink: 0; background: var(--color-surface-high);">
+                    <div class="card-sofia" style="width: 100%; height: 90px; overflow: hidden; border-bottom: 1px solid var(--color-outline-variant); flex-shrink: 0; background: var(--color-surface-high);">
                         <img src="img/projects/santa-sofia.png" alt="Santa Sofía preview" style="width: 100%; height: 100%; object-fit: cover; object-position: top; opacity: 0.85; transition: opacity 0.3s ease;" loading="lazy">
                     </div>
                     <div class="card-body">
@@ -665,7 +805,6 @@
                             </div>
                         </div>
                         <div class="card-footer">
-                            <span class="card-domain">inversionessantasofia.cl</span>
                             <a href="https://inversionessantasofia.cl/" class="card-link" target="_blank" rel="noopener noreferrer" title="Ver Santa Sofía">
                                 <span>Ver Proyecto</span>
                                 <span class="material-symbols-outlined" style="font-size: 18px;">arrow_outward</span>
@@ -674,7 +813,7 @@
                     </div>
                 </div>
 
-                <!-- ── 03 · AcceMap (span 5) ── -->
+                <!-- ── 03 · DogHome (span 5) ── -->
                 <div class="project-card card-md-5" data-cat="dev" style="position: relative;">
                     <div style="position: absolute; top: 0; left: 0; width: 80px; height: 3px; background: var(--color-primary); z-index: 1;"></div>
                     <div class="card-img" style="height: 150px; aspect-ratio: unset; border-bottom: 1px solid var(--color-outline-variant); background: var(--color-surface-high);">
@@ -697,7 +836,6 @@
                             </div>
                         </div>
                         <div class="card-footer">
-                            <span class="card-domain">dog-home-79316.web.app</span>
                             <a href="https://dog-home-79316.web.app/" class="card-link" target="_blank" rel="noopener noreferrer" title="Ver Demo Dog Home">
                                 <span>Ver Demo</span>
                                 <span class="material-symbols-outlined" style="font-size: 18px;">arrow_outward</span>
@@ -729,7 +867,6 @@
                             </div>
                         </div>
                         <div class="card-footer" style="padding-top: 12px; margin-top: 12px;">
-                            <span class="card-domain">nexoweb.cl</span>
                             <a href="https://nexoweb.cl/" class="card-link" target="_blank" rel="noopener noreferrer" title="Ver NexoWeb">
                                 <span>Ver Proyecto</span>
                                 <span class="material-symbols-outlined" style="font-size: 18px;">arrow_outward</span>
@@ -738,7 +875,7 @@
                     </div>
                 </div>
 
-                <!-- ── 05 · Dog Home (span 12 → fila completa compacta) ── -->
+                <!-- ── 05 · AcceMap (span 12 → fila completa compacta) ── -->
                 <div class="project-card" style="grid-column: span 12; flex-direction: row; align-items: stretch;" data-cat="dev">
                     <div style="width: 280px; flex-shrink: 0; background: var(--color-surface-highest); border-right: 1px solid var(--color-outline-variant); overflow: hidden;">
                         <img src="img/projects/accemap.png" alt="AcceMap preview" style="width: 100%; height: 100%; object-fit: cover; opacity: 0.8; transition: opacity 0.3s ease;" loading="lazy">
@@ -888,9 +1025,10 @@
             </div>
         </section>
 
-        <!-- Footer -->
-        <footer style="padding: 48px; border-top: 1px solid var(--color-outline-variant); display: flex; justify-content: space-between; align-items: flex-end;">
-            <div>
+        <!-- Footer Area -->
+        <footer>
+            <div class="footer-bg-text">PORTAFOLIO</div>
+            <div style="position: relative; z-index: 10;">
                 <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px;">
                     <span style="background: var(--color-primary); color: #0600a5; width: 32px; height: 32px; display: inline-flex; align-items: center; justify-content: center; font-family: var(--font-headline); font-size: 11px; font-weight: 900; flex-shrink: 0;">NW</span>
                     <span style="font-family: var(--font-headline); font-size: 1rem; font-weight: 900; color: var(--color-primary); text-transform: uppercase; letter-spacing: 0.05em;">NexoWeb</span>
@@ -902,9 +1040,9 @@
                     <a href="https://wa.me/56997236064?text=Hola%20Pedro%2C%20estuve%20viendo%20tu%20portafolio%20y%20me%20interesa%20tu%20perfil%20h%C3%ADbrido%20(Tech%2BCX).%20Me%20gustar%C3%ADa%20conversar%20contigo." target="_blank" rel="noopener noreferrer" style="font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase;">WhatsApp</a>
                 </div>
             </div>
-            <div style="text-align: right;">
-                <p style="font-family: var(--font-headline); font-size: 4rem; font-weight: 900; color: var(--color-tertiary); text-transform: uppercase; line-height: 1;">Trabajemos<br>Juntos</p>
-                <p style="font-family: var(--font-headline); font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--color-primary); margin-top: 16px;">Santiago, Chile · Remoto / Híbrido</p>
+            <div style="position: relative; z-index: 10; text-align: right;">
+                <div class="footer-title">Trabajemos<br>Juntos</div>
+                <p class="footer-subtitle">Santiago, Chile · Remoto / Híbrido</p>
             </div>
         </footer>
     </main>

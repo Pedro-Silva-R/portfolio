@@ -67,7 +67,6 @@
             padding: 0 48px;
             display: grid;
             grid-template-columns: repeat(12, 1fr);
-            gap: 48px;
             margin-bottom: 128px;
         }
 
@@ -153,6 +152,97 @@
             color: var(--color-primary);
             -webkit-text-stroke: 1px var(--color-primary);
         }
+
+        /* ── Responsividad Local (experience.html) ────────────── */
+        @media screen and (max-width: 1024px) {
+            .timeline-section {
+                grid-template-columns: 1fr;
+            }
+            .timeline-container {
+                grid-column: span 1;
+            }
+            .timeline-section > div[style*="position: sticky"] {
+                position: relative !important;
+                top: 0 !important;
+                margin-bottom: 48px; /* Offset to connect title with timeline */
+            }
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 48px;
+            }
+            .experience-hero h1 {
+                font-size: 6rem !important;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            main {
+                padding-top: 96px !important;
+                padding-left: 0 !important;
+            }
+
+            .topbar-nav {
+                display: none !important;
+            }
+            
+            .experience-hero {
+                padding: 0 24px;
+                margin-bottom: 56px;
+            }
+            .experience-hero h1 {
+                font-size: 4rem !important;
+                line-height: 0.95 !important;
+            }
+            .timeline-section {
+                padding: 0 24px;
+                margin-bottom: 80px;
+            }
+
+            /* Timeline items */
+            .timeline-item {
+                padding: 32px 24px;
+            }
+            
+            /* Evitar que el H3 y la fecha se aplasten horizontalmente */
+            .timeline-item > div:first-of-type {
+                flex-direction: column !important;
+                align-items: flex-start !important;
+                gap: 12px !important;
+            }
+
+            .timeline-number {
+                left: auto;
+                right: 16px;
+                top: 16px;
+                font-size: 5rem;
+                opacity: 0.05;
+                z-index: 0;
+                color: var(--color-on-surface-variant);
+            }
+            .timeline-item > * {
+                position: relative;
+                z-index: 10;
+            }
+
+            .contact-section {
+                padding: 96px 24px 64px;
+            }
+            .contact-section h2 {
+                font-size: 3rem !important;
+                margin-bottom: 40px !important;
+            }
+            .contact-section h2 span {
+                font-size: 2.2rem !important;
+            }
+            
+            /* Flip the social links layout */
+            .contact-grid > div:last-child {
+                align-items: flex-start !important;
+            }
+            .social-link-stroke {
+                font-size: 2.5rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -189,15 +279,35 @@
     <!-- Top App Bar -->
     <header class="topbar" id="topbar">
         <div class="topbar-title">PORTAFOLIO_PS</div>
-        <nav style="display: flex; gap: 40px; align-items: center;">
+        <nav class="desktop-nav topbar-nav" aria-label="Navegación principal">
             <a href="#trayectoria" class="topbar-nav-link">Trayectoria</a>
             <a href="#contacto" class="topbar-nav-link">Contacto</a>
         </nav>
-        <div style="display: flex; align-items: center; gap: 24px;">
-            <span class="material-symbols-outlined" style="cursor: pointer;">dark_mode</span>
+        <div class="topbar-actions">
+            <span class="material-symbols-outlined theme-toggle" style="cursor: pointer;">dark_mode</span>
             <button class="btn-connect" onclick="window.location.href='experience.html#contacto'">Contactar</button>
+            <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú">
+                <span class="material-symbols-outlined">menu</span>
+            </button>
         </div>
     </header>
+
+    <!-- Mobile Navigation Drawer -->
+    <div class="mobile-nav-overlay" id="mobile-nav-overlay"></div>
+    <nav class="mobile-nav-drawer" id="mobile-nav-drawer">
+        <div class="mobile-nav-header">
+            <div class="sidenav-logo">PS</div>
+            <button class="menu-close" id="menu-close" aria-label="Cerrar menú">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+        </div>
+        <div class="mobile-nav-links">
+            <a href="index.html" class="mobile-nav-link">Inicio</a>
+            <a href="about.html" class="mobile-nav-link">Sobre Mí</a>
+            <a href="proyectos.html" class="mobile-nav-link">Proyectos</a>
+            <a href="experience.html" class="mobile-nav-link active">Experiencia</a>
+        </div>
+    </nav>
 
     <main style="padding-top: 128px; padding-left: 96px;">
         <!-- Hero Section -->
@@ -217,7 +327,7 @@
 
         <!-- Timeline Section -->
         <section class="timeline-section" id="trayectoria">
-            <div style="grid-column: span 4; position: sticky; top: 160px; height: fit-content;">
+            <div style="grid-column: span 4; position: sticky; top: 160px; height: fit-content; align-self: start; z-index: 20;">
                 <div style="width: 64px; height: 4px; background: var(--color-secondary); margin-bottom: 16px;"></div>
                 <h2 class="font-headline" style="font-size: 2.5rem; font-weight: 900; text-transform: uppercase; color: var(--color-secondary); margin-bottom: 24px;">Trayectoria</h2>
                 <p style="font-family: var(--font-headline); font-size: 12px; font-weight: 700; letter-spacing: 0.2em; color: var(--color-on-surface-variant);">2018 — PRESENTE</p>
@@ -360,9 +470,9 @@
             </div>
         </section>
 
-        <!-- Footer -->
-        <footer style="margin-top: 0; padding: 48px; border-top: 1px solid var(--color-outline-variant); display: flex; justify-content: space-between; align-items: flex-end;">
-            <div class="footer-bg-text" style="font-size: 6rem; top: -32px;">PORTAFOLIO_PS</div>
+        <!-- Footer Area -->
+        <footer>
+            <div class="footer-bg-text">PORTAFOLIO</div>
             <div style="position: relative; z-index: 10;">
                 <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px;">
                     <span style="background: var(--color-primary); color: #0600a5; width: 32px; height: 32px; display: inline-flex; align-items: center; justify-content: center; font-family: var(--font-headline); font-size: 11px; font-weight: 900; flex-shrink: 0;">NW</span>
@@ -371,10 +481,9 @@
                 <p style="font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--color-on-surface-variant);">©<span id="copyright-year">2025</span> NexoWeb · Pedro Silva</p>
                 <p style="font-size: 10px; text-transform: uppercase; letter-spacing: 0.2em; color: var(--color-on-surface-variant); max-width: 400px; margin-top: 8px;">CONSTRUIDO CON PROPÓSITO. OPTIMIZADO PARA RESULTADOS.</p>
             </div>
-            <div style="display: flex; gap: 48px; position: relative; z-index: 10;">
-                <a href="#" style="font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase;">GitHub</a>
-                <a href="#" style="font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase;">LinkedIn</a>
-                <a href="https://wa.me/56997236064?text=Hola%20Pedro%2C%20estuve%20viendo%20tu%20portafolio%20y%20me%20interesa%20tu%20perfil%20h%C3%ADbrido%20(Tech%2BCX).%20Me%20gustar%C3%ADa%20conversar%20contigo." target="_blank" rel="noopener noreferrer" style="font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase;">WhatsApp</a>
+            <div style="position: relative; z-index: 10; text-align: right;">
+                <div class="footer-title">Trabajemos<br>Juntos</div>
+                <p class="footer-subtitle">Santiago, Chile · Remoto / Híbrido</p>
             </div>
         </footer>
     </main>

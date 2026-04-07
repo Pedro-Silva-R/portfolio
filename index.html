@@ -50,16 +50,36 @@
     <!-- Top App Bar -->
     <header class="topbar" id="topbar">
         <div class="topbar-title">PORTAFOLIO_PS</div>
-        <nav style="display: flex; gap: 40px; align-items: center;">
+        <nav class="desktop-nav">
             <a href="proyectos.html" style="font-family: var(--font-headline); font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 0.15em; color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.3s ease;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.5)'">Proyectos</a>
             <a href="about.html" style="font-family: var(--font-headline); font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 0.15em; color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.3s ease;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.5)'">Sobre Mí</a>
             <a href="experience.html" style="font-family: var(--font-headline); font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 0.15em; color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.3s ease;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.5)'">Experiencia</a>
         </nav>
-        <div style="display: flex; align-items: center; gap: 24px;">
-            <span class="material-symbols-outlined" style="cursor: pointer;">dark_mode</span>
+        <div class="topbar-actions">
+            <span class="material-symbols-outlined theme-toggle" style="cursor: pointer;">dark_mode</span>
             <button class="btn-connect" onclick="window.location.href='experience.html#contacto'">Contactar</button>
+            <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú">
+                <span class="material-symbols-outlined">menu</span>
+            </button>
         </div>
     </header>
+
+    <!-- Mobile Navigation Drawer -->
+    <div class="mobile-nav-overlay" id="mobile-nav-overlay"></div>
+    <nav class="mobile-nav-drawer" id="mobile-nav-drawer">
+        <div class="mobile-nav-header">
+            <div class="sidenav-logo">PS</div>
+            <button class="menu-close" id="menu-close" aria-label="Cerrar menú">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+        </div>
+        <div class="mobile-nav-links">
+            <a href="index.html" class="mobile-nav-link active">Inicio</a>
+            <a href="about.html" class="mobile-nav-link">Sobre Mí</a>
+            <a href="proyectos.html" class="mobile-nav-link">Proyectos</a>
+            <a href="experience.html" class="mobile-nav-link">Experiencia</a>
+        </div>
+    </nav>
 
     <!-- Main Content Area -->
     <main>
@@ -69,9 +89,9 @@
 
         <!-- Hero Section -->
         <section class="section-hero">
-            <div style="display: grid; grid-template-columns: repeat(12, 1fr); gap: 48px; align-items: end;">
+            <div class="hero-layout">
                 <!-- Headline Column -->
-                <div style="grid-column: span 7;">
+                <div class="hero-col-text">
                     <div style="margin-bottom: 24px; display: flex; gap: 16px;">
                         <span style="padding: 4px 12px; background: rgba(171, 0, 161, 0.3); border: 1px solid rgba(255, 86, 237, 0.2); font-family: var(--font-headline); font-size: 10px; text-transform: uppercase; letter-spacing: 0.2em; color: var(--color-secondary);">Disponible</span>
                         <span style="padding: 4px 12px; background: var(--color-surface-high); font-family: var(--font-headline); font-size: 10px; text-transform: uppercase; letter-spacing: 0.2em; color: var(--color-on-surface-variant);">v1.0.25</span>
@@ -79,15 +99,15 @@
                     <h1 class="hero-headline">
                         PEDRO<br><span>SILVA</span>
                     </h1>
-                    <div style="margin-top: 48px; max-width: 720px; position: relative;">
+                    <div class="hero-content">
                         <!-- Overlapping Design Element -->
-                        <div style="position: absolute; top: -64px; left: 0; font-family: var(--font-headline); font-size: 5rem; font-weight: 900; color: rgba(72, 72, 71, 0.1); user-select: none; text-transform: uppercase; white-space: nowrap; pointer-events: none;">PRODUCT BUILDER</div>
+                        <div class="hero-bg-text">PRODUCT BUILDER</div>
 
                         <p style="font-size: 1.5rem; line-height: 1.6; color: var(--color-on-surface-variant);">
                             Conecto los objetivos de tu negocio con <span style="color: white; font-weight: 700; font-style: italic;">tecnología funcional</span>. Creo plataformas web <span style="color: white; font-weight: 700; font-style: italic;">accesibles, rápidas y centradas en el usuario</span>, respaldadas por más de 5 años de experiencia en satisfacción del cliente.
                         </p>
                         
-                        <div style="margin-top: 40px; display: flex; align-items: center; gap: 32px; flex-wrap: wrap;">
+                        <div class="hero-actions">
                             <button class="btn-identity" onclick="window.location.href='proyectos.html'">PROYECTOS</button>
                             <a href="assets/Pedro_Silva_R-CV.pdf" download style="font-family: var(--font-headline); font-weight: 900; letter-spacing: 0.15em; text-transform: uppercase; color: white; border: 1px solid var(--color-outline-variant); padding: 12px 24px; display: flex; align-items: center; gap: 12px; text-decoration: none; transition: background 0.2s ease, border-color 0.2s ease; cursor: pointer;" onmouseover="this.style.background='rgba(255,255,255,0.05)'; this.style.borderColor='var(--color-primary)'" onmouseout="this.style.background='transparent'; this.style.borderColor='var(--color-outline-variant)'">
                                 <span class="material-symbols-outlined" style="font-size: 18px;">download</span>
@@ -102,7 +122,7 @@
                 </div>
 
                 <!-- Portrait Column con Bridge Visual -->
-                <div style="grid-column: span 5; display: flex; align-items: stretch; justify-content: flex-end; gap: 32px;">
+                <div class="hero-col-portrait">
                     <!-- Visual Bridge (Filling the gap) -->
                     <div style="display: flex; flex-direction: column; justify-content: flex-end; padding-bottom: 24px; border-left: 1px solid rgba(72, 72, 71, 0.3); padding-left: 32px;">
                         <div style="writing-mode: vertical-rl; transform: rotate(180deg); display: flex; gap: 24px; color: var(--color-on-surface-variant); font-family: var(--font-headline); font-size: 10px; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase;">
@@ -110,7 +130,7 @@
                             <span style="color: var(--color-tertiary-fixed);">EST_2025</span>
                             <span>FRONTEND_PO_CX</span>
                         </div>
-                        <div style="width: 1px; height: 100px; background: linear-gradient(to top, var(--color-primary), transparent); margin-top: 24px;"></div>
+                        <div class="hero-bridge-line"></div>
                     </div>
 
                     <!-- Image container -->
@@ -176,8 +196,8 @@
                 </div>
             </div>
             <div style="position: relative; z-index: 10; text-align: right;">
-                <div style="font-family: var(--font-headline); font-size: 4rem; font-weight: 900; color: var(--color-tertiary); text-transform: uppercase; line-height: 1;">Trabajemos<br>Juntos</div>
-                <p style="font-family: var(--font-headline); font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--color-primary); margin-top: 16px;">Santiago, Chile · Remoto / Híbrido</p>
+                <div class="footer-title">Trabajemos<br>Juntos</div>
+                <p class="footer-subtitle">Santiago, Chile · Remoto / Híbrido</p>
             </div>
         </footer>
     </main>

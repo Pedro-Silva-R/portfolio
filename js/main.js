@@ -164,4 +164,38 @@ document.addEventListener('DOMContentLoaded', () => {
     if (yearElement) {
         yearElement.textContent = new Date().getFullYear();
     }
+
+    // 7. Mobile Navigation Drawer
+    const menuToggle = document.getElementById('menu-toggle');
+    const menuClose = document.getElementById('menu-close');
+    const mobileNavDrawer = document.getElementById('mobile-nav-drawer');
+    const mobileNavOverlay = document.getElementById('mobile-nav-overlay');
+
+    if (menuToggle && menuClose && mobileNavDrawer && mobileNavOverlay) {
+        function openMenu() {
+            mobileNavDrawer.classList.add('active');
+            mobileNavOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Evita el scroll trasero
+        }
+
+        function closeMenu() {
+            mobileNavDrawer.classList.remove('active');
+            mobileNavOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        menuToggle.addEventListener('click', openMenu);
+        menuClose.addEventListener('click', closeMenu);
+        mobileNavOverlay.addEventListener('click', closeMenu);
+
+        // Auto highlight current section logic for mobile menu
+        const mobileLinks = mobileNavDrawer.querySelectorAll('.mobile-nav-link');
+        mobileLinks.forEach(link => {
+            link.classList.remove('active');
+            const linkPath = link.getAttribute('href');
+            if (linkPath === currentPath) {
+                link.classList.add('active');
+            }
+        });
+    }
 });
