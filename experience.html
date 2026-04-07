@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Experiencia & Contacto | Pedro Silva Rojas</title>
+    <link rel="stylesheet" href="styles/base.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <style>
+        /* Fondo del topbar al hacer scroll */
+        .topbar.scrolled {
+            background: rgba(14, 14, 14, 0.85);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--color-outline-variant);
+            transition: background 0.3s ease, border-color 0.3s ease;
+        }
+
+        .topbar-nav-link {
+            font-family: var(--font-headline);
+            font-weight: 700;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: rgba(255, 255, 255, 0.4);
+            text-decoration: none;
+            position: relative;
+            transition: color 0.3s ease;
+            padding-bottom: 4px;
+        }
+
+        .topbar-nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--color-tertiary-fixed);
+            transition: width 0.3s ease;
+        }
+
+        .topbar-nav-link:hover {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .topbar-nav-link.is-active {
+            color: var(--color-tertiary-fixed);
+        }
+
+        .topbar-nav-link.is-active::after {
+            width: 100%;
+        }
+
+        .experience-hero {
+            padding: 0 48px;
+            margin-bottom: 80px;
+            position: relative;
+        }
+
+        .text-stroke {
+            -webkit-text-stroke: 1px rgba(161, 166, 255, 0.3);
+            color: transparent;
+        }
+
+        .timeline-section {
+            padding: 0 48px;
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 48px;
+            margin-bottom: 128px;
+        }
+
+        .timeline-container {
+            grid-column: span 8;
+            display: flex;
+            flex-direction: column;
+            gap: 96px;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding: 48px;
+            background: var(--color-surface-low);
+            border-left: 2px solid var(--color-primary);
+            transition: background 0.3s ease;
+        }
+
+        .timeline-item:hover {
+            background: var(--color-surface-high);
+        }
+
+        .timeline-number {
+            position: absolute;
+            left: -48px;
+            top: 0;
+            font-family: var(--font-headline);
+            font-size: 4rem;
+            font-weight: 900;
+            color: var(--color-surface-high);
+            user-select: none;
+            transition: color 0.3s ease;
+        }
+
+        .timeline-item:hover .timeline-number {
+            color: rgba(161, 166, 255, 0.2);
+        }
+
+        .contact-section {
+            min-height: 100vh;
+            background: var(--color-surface-low);
+            padding: 128px 48px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 80px;
+            align-items: flex-end;
+            margin-top: 48px;
+        }
+
+        .contact-link-massive {
+            font-family: var(--font-headline);
+            font-size: 3rem;
+            font-weight: 900;
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-link-massive:hover {
+            color: var(--color-primary);
+        }
+
+        .social-link-stroke {
+            font-family: var(--font-headline);
+            font-size: 3rem;
+            font-weight: 900;
+            -webkit-text-stroke: 1px rgba(161, 166, 255, 0.3);
+            color: transparent;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: block;
+        }
+
+        .social-link-stroke:hover {
+            color: var(--color-primary);
+            -webkit-text-stroke: 1px var(--color-primary);
+        }
+    </style>
+</head>
+<body>
+    <!-- Side Navigation Bar -->
+    <nav class="sidenav">
+        <div>
+            <div class="sidenav-logo">PS</div>
+            <div class="sidenav-links">
+                <a href="index.html" class="sidenav-link">
+                    <span class="material-symbols-outlined">person</span>
+                    <small>Inicio</small>
+                </a>
+                <a href="about.html" class="sidenav-link">
+                    <span class="material-symbols-outlined">history_edu</span>
+                    <small>Sobre Mí</small>
+                </a>
+                <a href="proyectos.html" class="sidenav-link">
+                    <span class="material-symbols-outlined">grid_view</span>
+                    <small>Proyectos</small>
+                </a>
+            </div>
+        </div>
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 24px;">
+            <a href="experience.html" class="sidenav-link active">
+                <span class="material-symbols-outlined">folder_open</span>
+                <small>Experiencia</small>
+            </a>
+            <div style="width: 40px; height: 40px; border: 1px solid var(--color-outline-variant); overflow: hidden;">
+                <img src="img/pedro4.png" alt="Profile" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+        </div>
+    </nav>
+
+    <!-- Top App Bar -->
+    <header class="topbar" id="topbar">
+        <div class="topbar-title">PORTAFOLIO_PS</div>
+        <nav style="display: flex; gap: 40px; align-items: center;">
+            <a href="#trayectoria" class="topbar-nav-link">Trayectoria</a>
+            <a href="#contacto" class="topbar-nav-link">Contacto</a>
+        </nav>
+        <div style="display: flex; align-items: center; gap: 24px;">
+            <span class="material-symbols-outlined" style="cursor: pointer;">dark_mode</span>
+            <button class="btn-connect" onclick="window.location.href='experience.html#contacto'">Contactar</button>
+        </div>
+    </header>
+
+    <main style="padding-top: 128px; padding-left: 96px;">
+        <!-- Hero Section -->
+        <section class="experience-hero">
+            <div style="position: absolute; top: -80px; right: -80px; width: 384px; height: 384px; background: rgba(161, 166, 255, 0.1); filter: blur(120px); border-radius: 50%;"></div>
+            <h1 class="font-headline" style="font-size: 8rem; font-weight: 900; line-height: 0.85; text-transform: uppercase; letter-spacing: -0.05em; margin-bottom: 32px;">
+                HISTORIAL<br><span class="text-stroke">LABORAL</span>
+            </h1>
+            <p style="font-size: 1.5rem; color: var(--color-on-surface-variant); max-width: 640px; line-height: 1.6;">
+                De soporte técnico B2B a gestión de productos digitales. Un camino construido sobre la comprensión profunda del usuario y la entrega de valor real.
+            </p>
+        </section>
+
+        <!-- Timeline Section -->
+        <section class="timeline-section" id="trayectoria">
+            <div style="grid-column: span 4; position: sticky; top: 160px; height: fit-content;">
+                <div style="width: 64px; height: 4px; background: var(--color-secondary); margin-bottom: 16px;"></div>
+                <h2 class="font-headline" style="font-size: 2.5rem; font-weight: 900; text-transform: uppercase; color: var(--color-secondary); margin-bottom: 24px;">Trayectoria</h2>
+                <p style="font-family: var(--font-headline); font-size: 12px; font-weight: 700; letter-spacing: 0.2em; color: var(--color-on-surface-variant);">2018 — PRESENTE</p>
+            </div>
+
+            <div class="timeline-container">
+                <!-- Item 01: Proyectos Independientes -->
+                <div class="timeline-item">
+                    <span class="timeline-number">01</span>
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 24px;">
+                        <h3 class="font-headline" style="font-size: 2rem; font-weight: 700; color: var(--color-primary);">Dev Frontend & PM Trainee</h3>
+                        <span style="font-family: var(--font-headline); font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.2em; background: rgba(161, 166, 255, 0.1); color: var(--color-primary); padding: 4px 12px;">2024 — PRESENTE</span>
+                    </div>
+                    <p class="font-headline" style="font-size: 1.25rem; color: white; text-transform: uppercase; margin-bottom: 24px;">Proyectos Independientes · NexoWeb</p>
+                    <p style="color: var(--color-on-surface-variant); line-height: 1.6; margin-bottom: 32px; max-width: 500px;">
+                        Desarrollo End-to-End de plataformas web con Vue.js 3, Firebase y JavaScript. Integración de IA Generativa (Prompting avanzado) para optimización de flujos de desarrollo. Foco estricto en accesibilidad (WCAG), SEO técnico y alta conversión bajo marco Scrum.
+                    </p>
+                    <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                        <span style="padding: 4px 12px; border: 1px solid var(--color-outline-variant); font-size: 10px; text-transform: uppercase; font-weight: 700;">Vue.js 3</span>
+                        <span style="padding: 4px 12px; border: 1px solid var(--color-outline-variant); font-size: 10px; text-transform: uppercase; font-weight: 700;">Firebase</span>
+                        <span style="padding: 4px 12px; border: 1px solid var(--color-outline-variant); font-size: 10px; text-transform: uppercase; font-weight: 700;">IA Prompting</span>
+                        <span style="padding: 4px 12px; border: 1px solid var(--color-outline-variant); font-size: 10px; text-transform: uppercase; font-weight: 700;">Scrum</span>
+                    </div>
+                </div>
+
+                <!-- Item 02: SumUp -->
+                <div class="timeline-item" style="border-left-color: var(--color-secondary);">
+                    <span class="timeline-number">02</span>
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 24px;">
+                        <h3 class="font-headline" style="font-size: 2rem; font-weight: 700; color: var(--color-secondary);">Especialista Soporte Técnico</h3>
+                        <span style="font-family: var(--font-headline); font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.2em; color: var(--color-on-surface-variant); padding: 4px 12px;">2021 — 2022</span>
+                    </div>
+                    <p class="font-headline" style="font-size: 1.25rem; color: white; text-transform: uppercase; margin-bottom: 24px;">SumUp · Fintech B2B</p>
+                    <p style="color: var(--color-on-surface-variant); line-height: 1.6; margin-bottom: 32px; max-width: 500px;">
+                        Soporte técnico especializado para ecosistema de pagos (POS, API, integraciones). CSAT superior al 90% de forma sostenida. Escalación y documentación de bugs críticos que impactaron en mejoras directas al producto. Atención B2B en español e inglés.
+                    </p>
+                    <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                        <span style="padding: 4px 12px; border: 1px solid var(--color-outline-variant); font-size: 10px; text-transform: uppercase; font-weight: 700;">CSAT +90%</span>
+                        <span style="padding: 4px 12px; border: 1px solid var(--color-outline-variant); font-size: 10px; text-transform: uppercase; font-weight: 700;">Ecosistemas de Pago</span>
+                        <span style="padding: 4px 12px; border: 1px solid var(--color-outline-variant); font-size: 10px; text-transform: uppercase; font-weight: 700;">Bug Reporting</span>
+                    </div>
+                </div>
+
+                <!-- Item 03: Fundación Tacal -->
+                <div class="timeline-item" style="border-left-color: var(--color-tertiary-fixed);">
+                    <span class="timeline-number">03</span>
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 24px;">
+                        <h3 class="font-headline" style="font-size: 2rem; font-weight: 700; color: var(--color-tertiary-fixed);">QA & UX Tester</h3>
+                        <span style="font-family: var(--font-headline); font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.2em; color: var(--color-on-surface-variant); padding: 4px 12px;">2020 — 2021</span>
+                    </div>
+                    <p class="font-headline" style="font-size: 1.25rem; color: white; text-transform: uppercase; margin-bottom: 24px;">Fundación Tacal · Inclusividad Digital</p>
+                    <p style="color: var(--color-on-surface-variant); line-height: 1.6; margin-bottom: 32px; max-width: 500px;">
+                        Testing de usabilidad y accesibilidad para plataformas educativas inclusivas. Identificación y documentación de barreras de acceso para usuarios con discapacidad. Análisis UX y reportes de mejora continua.
+                    </p>
+                    <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                        <span style="padding: 4px 12px; border: 1px solid var(--color-outline-variant); font-size: 10px; text-transform: uppercase; font-weight: 700;">QA Testing</span>
+                        <span style="padding: 4px 12px; border: 1px solid var(--color-outline-variant); font-size: 10px; text-transform: uppercase; font-weight: 700;">Accesibilidad</span>
+                        <span style="padding: 4px 12px; border: 1px solid var(--color-outline-variant); font-size: 10px; text-transform: uppercase; font-weight: 700;">UX Research</span>
+                    </div>
+                </div>
+
+                <!-- Item 04: Cesmec & Entel -->
+                <div class="timeline-item" style="border-left-color: var(--color-primary-container);">
+                    <span class="timeline-number">04</span>
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 24px;">
+                        <h3 class="font-headline" style="font-size: 2rem; font-weight: 700; color: var(--color-primary-container);">Soporte Técnico & Atención al Cliente</h3>
+                        <span style="font-family: var(--font-headline); font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.2em; color: var(--color-on-surface-variant); padding: 4px 12px;">2018 — 2020</span>
+                    </div>
+                    <p class="font-headline" style="font-size: 1.25rem; color: white; text-transform: uppercase; margin-bottom: 24px;">Cesmec S.A. · Entel</p>
+                    <p style="color: var(--color-on-surface-variant); line-height: 1.6; margin-bottom: 32px; max-width: 500px;">
+                        Soporte técnico presencial y remoto para equipos de calibración en Cesmec. Atención masiva al cliente en Entel, con foco en resolución de primera llamada (FCR) y satisfacción del usuario en servicios de telecomunicaciones.
+                    </p>
+                    <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                        <span style="padding: 4px 12px; border: 1px solid var(--color-outline-variant); font-size: 10px; text-transform: uppercase; font-weight: 700;">Soporte Técnico</span>
+                        <span style="padding: 4px 12px; border: 1px solid var(--color-outline-variant); font-size: 10px; text-transform: uppercase; font-weight: 700;">FCR</span>
+                        <span style="padding: 4px 12px; border: 1px solid var(--color-outline-variant); font-size: 10px; text-transform: uppercase; font-weight: 700;">CX</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="contact-section" id="contacto">
+            <div style="position: absolute; top: 25%; right: -80px; width: 384px; height: 384px; border: 40px solid var(--color-tertiary-fixed); opacity: 0.1; transform: rotate(12deg); pointer-events: none;"></div>
+            
+            <div class="relative z-10">
+                <h2 class="font-headline" style="font-size: 8vw; font-weight: 900; line-height: 1; margin-bottom: 64px;">
+                    ¿Listo para<br>
+                    <span style="background: var(--color-primary); color: #0600a5; padding: 0 16px; display: inline-block; margin-top: 8px; rotate: -1deg; transform: rotate(-1deg);">CONSTRUIR?</span>
+                </h2>
+
+                <div class="contact-grid">
+                    <!-- Contact Form Column -->
+                    <div style="display: flex; flex-direction: column; gap: 32px;">
+                        <form id="contact-form" class="disruptive-form">
+                            <!-- Success/Error Area -->
+                            <div id="form-status" class="form-status-msg"></div>
+
+                            <div class="form-group">
+                                <label for="user_name">Tu Nombre</label>
+                                <input type="text" id="user_name" name="user_name" placeholder="Ej: María Pérez" required minlength="3">
+                                <span class="field-error">El nombre debe tener al menos 3 caracteres.</span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="user_email">Tu Email</label>
+                                <input type="email" id="user_email" name="user_email" placeholder="tu@email.com" required>
+                                <span class="field-error">Formato de email inválido.</span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="subject">Asunto</label>
+                                <input type="text" id="subject" name="subject" placeholder="Ej: Te queremos contratar" required>
+                                <span class="field-error">El asunto es obligatorio.</span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="message">Tu Mensaje</label>
+                                <textarea id="message" name="message" placeholder="Cuéntame sobre tu proyecto o propuesta..." required maxlength="1000"></textarea>
+                                <div class="char-counter">
+                                    <span id="char-current">0</span>/1000
+                                </div>
+                                <span class="field-error">El mensaje no puede estar vacío.</span>
+                            </div>
+
+                            <button type="submit" id="submit-btn" class="btn-identity" style="width: 100%; margin-top: 16px;">
+                                ENVIAR_MENSAJE
+                            </button>
+                        </form>
+                    </div>
+
+                    <div style="display: flex; flex-direction: column; gap: 32px; align-items: flex-end;">
+                        <p style="font-family: var(--font-headline); font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--color-on-surface-variant);">Contáctame en</p>
+                        <a href="https://wa.me/56997236064?text=Hola%20Pedro%2C%20estuve%20viendo%20tu%20portafolio%20y%20me%20interesa%20tu%20perfil%20h%C3%ADbrido%20(Tech%2BCX).%20Me%20gustar%C3%ADa%20conversar%20contigo." target="_blank" rel="noopener noreferrer" class="social-link-stroke">WHATSAPP</a>
+                        <a href="#" target="_blank" rel="noopener noreferrer" class="social-link-stroke">LINKEDIN</a>
+                        <a href="#" target="_blank" rel="noopener noreferrer" class="social-link-stroke">GITHUB</a>
+                        <a href="#" target="_blank" rel="noopener noreferrer" class="social-link-stroke">INSTAGRAM</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer style="margin-top: 0; padding: 48px; border-top: 1px solid var(--color-outline-variant); display: flex; justify-content: space-between; align-items: flex-end;">
+            <div class="footer-bg-text" style="font-size: 6rem; top: -32px;">PORTAFOLIO_PS</div>
+            <div style="position: relative; z-index: 10;">
+                <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px;">
+                    <span style="background: var(--color-primary); color: #0600a5; width: 32px; height: 32px; display: inline-flex; align-items: center; justify-content: center; font-family: var(--font-headline); font-size: 11px; font-weight: 900; flex-shrink: 0;">NW</span>
+                    <span style="font-family: var(--font-headline); font-size: 1rem; font-weight: 900; color: var(--color-primary); text-transform: uppercase; letter-spacing: 0.05em;">NexoWeb</span>
+                </div>
+                <p style="font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--color-on-surface-variant);">©<span id="copyright-year">2025</span> NexoWeb · Pedro Silva</p>
+                <p style="font-size: 10px; text-transform: uppercase; letter-spacing: 0.2em; color: var(--color-on-surface-variant); max-width: 400px; margin-top: 8px;">CONSTRUIDO CON PROPÓSITO. OPTIMIZADO PARA RESULTADOS.</p>
+            </div>
+            <div style="display: flex; gap: 48px; position: relative; z-index: 10;">
+                <a href="#" style="font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase;">GitHub</a>
+                <a href="#" style="font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase;">LinkedIn</a>
+                <a href="https://wa.me/56997236064?text=Hola%20Pedro%2C%20estuve%20viendo%20tu%20portafolio%20y%20me%20interesa%20tu%20perfil%20h%C3%ADbrido%20(Tech%2BCX).%20Me%20gustar%C3%ADa%20conversar%20contigo." target="_blank" rel="noopener noreferrer" style="font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase;">WhatsApp</a>
+            </div>
+        </footer>
+    </main>
+
+    <script src="js/main.js"></script>
+    <script>
+        // ── Scroll-spy: navegación interna del topbar ────────────────────────
+        (function () {
+            const topbar  = document.getElementById('topbar');
+            const navLinks = document.querySelectorAll('.topbar-nav-link');
+            const sections = ['trayectoria', 'contacto'].map(id => document.getElementById(id));
+            const heroHeight = 100;
+
+            function getActiveSection() {
+                const mid = window.scrollY + window.innerHeight * 0.4;
+                let active = null;
+                sections.forEach(sec => {
+                    if (!sec) return;
+                    if (sec.offsetTop <= mid) active = sec.id;
+                });
+                return active;
+            }
+
+            function updateNav() {
+                if (window.scrollY > heroHeight) {
+                    topbar.classList.add('scrolled');
+                } else {
+                    topbar.classList.remove('scrolled');
+                }
+
+                const activeId = getActiveSection();
+                navLinks.forEach(link => {
+                    const target = link.getAttribute('href').replace('#', '');
+                    link.classList.toggle('is-active', target === activeId);
+                });
+            }
+
+            window.addEventListener('scroll', updateNav, { passive: true });
+            updateNav();
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').replace('#', '');
+                    const target   = document.getElementById(targetId);
+                    if (!target) return;
+                    const topbarH  = topbar.offsetHeight;
+                    const targetY  = target.getBoundingClientRect().top + window.scrollY - topbarH - 16;
+                    window.scrollTo({ top: targetY, behavior: 'smooth' });
+                });
+            });
+        })();
+    </script>
+</body>
+</html>

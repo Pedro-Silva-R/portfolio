@@ -1,0 +1,1173 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre Mí | Pedro Silva Rojas</title>
+    <meta name="description" content="Pedro Silva Rojas — Frontend & CX. El puente entre lo que el negocio necesita, lo que el usuario pide y lo que la tecnología puede hacer.">
+    <link rel="stylesheet" href="styles/base.css">
+    <style>
+        /* ── Utilidades ─────────────────────────────────────── */
+        .text-outline {
+            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.3);
+            color: transparent;
+        }
+
+        /* ── Hero ───────────────────────────────────────────── */
+        .about-hero {
+            padding: 0 48px;
+            margin-bottom: 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-bg-word {
+            position: absolute;
+            top: -24px;
+            left: -60px;
+            font-size: 14rem;
+            font-family: var(--font-headline);
+            font-weight: 900;
+            color: rgba(255, 255, 255, 0.03);
+            user-select: none;
+            pointer-events: none;
+            z-index: 0;
+            text-transform: uppercase;
+            line-height: 1;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 5fr 6fr;
+            gap: 80px;
+            align-items: start;
+            position: relative;
+            z-index: 10;
+        }
+
+        .hero-headline {
+            font-family: var(--font-headline);
+            font-size: clamp(5rem, 8vw, 9rem);
+            font-weight: 900;
+            line-height: 0.88;
+            letter-spacing: -0.05em;
+            text-transform: uppercase;
+            margin-bottom: 40px;
+        }
+
+        .skill-tag {
+            padding: 8px 16px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 11px;
+            font-family: var(--font-headline);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--color-on-surface-variant);
+            transition: all 0.3s ease;
+        }
+
+        .skill-tag:hover {
+            background: var(--color-tertiary);
+            color: black;
+            border-color: var(--color-tertiary);
+            transform: translateY(-2px);
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: var(--color-tertiary);
+            color: #516700;
+            padding: 5px 18px;
+            font-family: var(--font-headline);
+            font-weight: 900;
+            font-size: 11px;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            margin-bottom: 40px;
+        }
+
+        .hero-availability {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-family: var(--font-headline);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--color-on-surface-variant);
+            margin-left: 16px;
+        }
+
+        .hero-availability::before {
+            content: '';
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background: #cafd00;
+            border-radius: 50%;
+            animation: ping 2s infinite;
+        }
+
+        @keyframes ping {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.3); }
+        }
+
+        /* Quote card */
+        .quote-card {
+            background: var(--color-surface-highest);
+            padding: 56px;
+            border-left: 4px solid var(--color-primary-container);
+            position: relative;
+            align-self: start;
+            margin-top: 48px;
+        }
+
+        .quote-card::before {
+            content: '"';
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            width: 52px;
+            height: 52px;
+            background: var(--color-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-headline);
+            font-weight: 900;
+            font-size: 1.8rem;
+            color: white;
+        }
+
+        .quote-text {
+            font-size: 1.1rem;
+            line-height: 1.75;
+            color: var(--color-on-surface-variant);
+            font-style: italic;
+            margin-bottom: 32px;
+            padding-bottom: 32px;
+            border-bottom: 1px solid var(--color-outline-variant);
+        }
+
+        .quote-bio {
+            font-size: 0.95rem;
+            line-height: 1.8;
+            color: var(--color-on-surface-variant);
+            margin-bottom: 28px;
+        }
+
+        .quote-bio strong {
+            color: white;
+        }
+
+        .quote-body {
+            font-size: 0.9rem;
+            line-height: 1.7;
+            color: var(--color-on-surface-variant);
+        }
+
+        .quote-body strong {
+            color: white;
+        }
+
+        /* ── Propuesta de Valor ─────────────────────────────── */
+        .valor-section {
+            padding: 96px 48px;
+            background: var(--color-surface-low);
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 72px;
+        }
+
+        .section-title {
+            font-family: var(--font-headline);
+            font-size: 3rem;
+            font-weight: 900;
+            text-transform: uppercase;
+        }
+
+        .section-rule {
+            height: 1px;
+            width: 35%;
+            background: var(--color-outline-variant);
+        }
+
+        .valor-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0;
+            border: 1px solid var(--color-outline-variant);
+        }
+
+        .valor-card {
+            padding: 48px;
+            border-right: 1px solid var(--color-outline-variant);
+            position: relative;
+            transition: background 0.3s ease;
+            overflow: hidden;
+        }
+
+        .valor-card:last-child {
+            border-right: none;
+        }
+
+        .valor-card:hover {
+            background: var(--color-surface-high);
+        }
+
+        .valor-icon {
+            font-size: 2.5rem;
+            margin-bottom: 24px;
+            display: block;
+        }
+
+        .valor-num {
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            font-family: var(--font-headline);
+            font-size: 4rem;
+            font-weight: 900;
+            color: var(--color-surface-highest);
+            line-height: 1;
+        }
+
+        .valor-card h3 {
+            font-family: var(--font-headline);
+            font-size: 1.4rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+            transition: color 0.3s ease;
+        }
+
+        .valor-card:nth-child(1):hover h3 { color: var(--color-primary); }
+        .valor-card:nth-child(2):hover h3 { color: var(--color-secondary); }
+        .valor-card:nth-child(3):hover h3 { color: var(--color-tertiary); }
+
+        .valor-card p {
+            font-size: 0.9rem;
+            line-height: 1.7;
+            color: var(--color-on-surface-variant);
+        }
+
+        /* puente callout → conector de sección */
+        .bridge-callout {
+            margin-top: 64px;
+            padding: 40px 48px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 48px;
+            border-top: 1px solid var(--color-outline-variant);
+        }
+
+        .bridge-label {
+            font-family: var(--font-headline);
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: var(--color-tertiary-fixed);
+            line-height: 1;
+            flex-shrink: 0;
+            text-transform: uppercase;
+            letter-spacing: -0.03em;
+        }
+
+        .bridge-text {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: var(--color-on-surface-variant);
+            max-width: 480px;
+            text-align: right;
+        }
+
+        .bridge-text strong {
+            color: white;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-10px);}
+            60% {transform: translateY(-5px);}
+        }
+
+        .transition-arrow {
+            opacity: 0.6;
+            transition: opacity 0.3s ease;
+        }
+
+        .bridge-callout:hover .transition-arrow {
+            opacity: 1;
+        }
+
+        /* ── Skill Matrix ───────────────────────────────────── */
+        .skill-matrix {
+            background: #0a0a0a;
+            padding: 80px 48px;
+            position: relative;
+            overflow: hidden;
+            border-top: 8px solid var(--color-tertiary);
+            border-bottom: 8px solid var(--color-tertiary);
+            background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+            background-size: 30px 30px;
+        }
+
+        .skill-matrix-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            font-size: 18rem;
+            font-family: var(--font-headline);
+            font-weight: 900;
+            color: rgba(255, 255, 255, 0.02);
+            line-height: 1;
+            transform: translate(-80px, -80px);
+            user-select: none;
+            pointer-events: none;
+        }
+
+        .skill-matrix-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 48px;
+            position: relative;
+            z-index: 10;
+            margin-top: 48px;
+        }
+
+        .skill-matrix-header h2 {
+            font-family: var(--font-headline);
+            font-size: 2.5rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            color: var(--color-tertiary);
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .skill-matrix-header p {
+            font-size: 1.1rem;
+            color: var(--color-on-surface-variant);
+            max-width: 480px;
+        }
+
+        /* Secciones del stack */
+        .stack-section {
+            position: relative;
+            z-index: 10;
+            margin-bottom: 32px;
+        }
+
+        .stack-label {
+            font-family: var(--font-headline);
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--color-tertiary);
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .stack-label::after {
+            content: '';
+            height: 1px;
+            flex-grow: 1;
+            background: rgba(243, 255, 202, 0.2);
+        }
+
+        .skill-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 12px;
+        }
+
+        .skill-grid-3 {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .skill-box {
+            padding: 24px;
+            background: #111;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .skill-box:hover {
+            background: var(--color-tertiary);
+            border-color: black;
+            transform: translate(-4px, -4px);
+            box-shadow: 4px 4px 0px 0px black;
+            z-index: 20;
+        }
+
+        .skill-box h5 {
+            font-family: var(--font-headline);
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: var(--color-tertiary); /* Amarillo vibrante por defecto */
+            margin-bottom: 4px;
+            line-height: 1;
+            transition: color 0.1s ease;
+        }
+
+        .skill-box:hover h5 {
+            color: black;
+        }
+
+        .skill-box span {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: rgba(255, 255, 255, 0.7); /* Blanco tenue para jerarquía */
+            transition: all 0.1s ease;
+        }
+
+        .skill-box:hover span {
+            color: black;
+            opacity: 1;
+        }
+
+        /* CTAs del skill matrix */
+        .skill-ctas {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            gap: 16px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        .btn-skill-cta {
+            background: var(--color-tertiary);
+            color: #516700;
+            font-family: var(--font-headline);
+            font-weight: 900;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            padding: 18px 36px;
+            text-decoration: none;
+            border: 3px solid #516700;
+            transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: inline-flex;
+            align-items: center;
+            position: relative;
+        }
+
+        .btn-skill-cta:hover {
+            background: var(--color-tertiary-fixed);
+            transform: translate(-5px, -5px);
+            box-shadow: 7px 7px 0px 0px black;
+        }
+
+        .btn-skill-cta-outline {
+            background: transparent;
+            color: var(--color-tertiary);
+            border: 2px solid var(--color-tertiary);
+            padding: 18px 36px;
+        }
+
+        .btn-skill-cta-outline:hover {
+            background: rgba(202, 253, 0, 0.05);
+            border-color: var(--color-tertiary);
+            color: var(--color-tertiary);
+            transform: translate(-5px, -5px);
+            box-shadow: 7px 7px 0px 0px var(--color-tertiary);
+        }
+
+        .btn-skill-cta-outline {
+            background: transparent;
+            color: #516700;
+            border: 2px solid rgba(81, 103, 0, 0.5);
+        }
+
+        .btn-skill-cta-outline:hover {
+            background: rgba(81, 103, 0, 0.1);
+            border-color: #516700;
+            color: var(--color-tertiary);
+        }
+
+        /* ── Formación & Certificaciones ────────────────────── */
+        .case-archive-list {
+            padding: 96px 48px;
+        }
+
+        .archive-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 56px;
+        }
+
+        .archive-header h2 {
+            font-family: var(--font-headline);
+            font-size: 3rem;
+            font-weight: 900;
+            text-transform: uppercase;
+        }
+
+        .archive-header span {
+            font-family: var(--font-headline);
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--color-on-surface-variant);
+        }
+
+        .archive-list {
+            border-top: 1px solid rgba(72, 72, 71, 0.3);
+        }
+
+        .archive-item {
+            padding: 40px 16px;
+            border-bottom: 1px solid rgba(72, 72, 71, 0.3);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 24px;
+            transition: background 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .archive-item:hover {
+            background: var(--color-surface-low);
+        }
+
+        .archive-item-left {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+            flex: 1;
+        }
+
+        .archive-num {
+            font-family: var(--font-headline);
+            font-size: 2rem;
+            font-weight: 900;
+            color: rgba(255, 255, 255, 0.12);
+            flex-shrink: 0;
+            min-width: 48px;
+        }
+
+        .archive-item-info h4 {
+            font-family: var(--font-headline);
+            font-size: 1.4rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+            transition: color 0.3s ease;
+        }
+
+        .archive-item:hover h4 {
+            color: var(--color-secondary);
+        }
+
+        .archive-item-info .archive-meta {
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--color-on-surface-variant);
+        }
+
+        .archive-item-right {
+            display: flex;
+            align-items: center;
+            gap: 48px;
+            flex-shrink: 0;
+        }
+
+        .archive-desc {
+            color: var(--color-on-surface-variant);
+            font-size: 13px;
+            line-height: 1.6;
+            max-width: 220px;
+            text-align: right;
+        }
+
+        .archive-badge {
+            padding: 4px 12px;
+            font-family: var(--font-headline);
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .badge-activo {
+            background: rgba(202, 253, 0, 0.1);
+            color: var(--color-tertiary-fixed);
+            border: 1px solid rgba(202, 253, 0, 0.3);
+        }
+
+        .badge-completado {
+            background: rgba(161, 166, 255, 0.08);
+            color: var(--color-primary);
+            border: 1px solid rgba(161, 166, 255, 0.2);
+        }
+
+        .badge-cursando {
+            background: rgba(255, 86, 237, 0.08);
+            color: var(--color-secondary);
+            border: 1px solid rgba(255, 86, 237, 0.2);
+        }
+
+        .archive-arrow {
+            opacity: 0.25;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .archive-item:hover .archive-arrow {
+            opacity: 0.6;
+            transform: translateX(4px);
+        }
+
+        /* ── Footer ───────────────────────────────────── */
+        .page-footer {
+            margin-top: 0;
+            padding: 64px 48px;
+            border-top: 1px solid var(--color-outline-variant);
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        /* ── Topbar nav (intra-page) ────────────────────── */
+        .topbar-nav {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .topbar-nav-link {
+            font-family: var(--font-headline);
+            font-weight: 700;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: rgba(255, 255, 255, 0.4);
+            text-decoration: none;
+            position: relative;
+            transition: color 0.3s ease;
+            padding-bottom: 4px;
+        }
+
+        .topbar-nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--color-tertiary-fixed);
+            transition: width 0.3s ease;
+        }
+
+        .topbar-nav-link:hover {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .topbar-nav-link.is-active {
+            color: var(--color-tertiary-fixed);
+        }
+
+        .topbar-nav-link.is-active::after {
+            width: 100%;
+        }
+
+        /* Fondo del topbar al hacer scroll */
+        .topbar.scrolled {
+            background: rgba(14, 14, 14, 0.85);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--color-outline-variant);
+            transition: background 0.3s ease, border-color 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <!-- Side Navigation Bar -->
+    <nav class="sidenav">
+        <div>
+            <div class="sidenav-logo">PS</div>
+            <div class="sidenav-links">
+                <a href="index.html" class="sidenav-link">
+                    <span class="material-symbols-outlined">person</span>
+                    <small>Inicio</small>
+                </a>
+                <a href="about.html" class="sidenav-link active">
+                    <span class="material-symbols-outlined">history_edu</span>
+                    <small>Sobre Mí</small>
+                </a>
+                <a href="proyectos.html" class="sidenav-link">
+                    <span class="material-symbols-outlined">grid_view</span>
+                    <small>Proyectos</small>
+                </a>
+            </div>
+        </div>
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 24px;">
+            <a href="experience.html" class="sidenav-link">
+                <span class="material-symbols-outlined">folder_open</span>
+                <small>Experiencia</small>
+            </a>
+            <div style="width: 40px; height: 40px; border: 1px solid var(--color-outline-variant); overflow: hidden;">
+                <img src="img/pedro2.png" alt="Profile" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+        </div>
+    </nav>
+
+    <!-- Top App Bar -->
+    <header class="topbar" id="topbar">
+        <div class="topbar-title">PORTAFOLIO_PS</div>
+        <nav class="topbar-nav" aria-label="Navegación interna">
+            <a href="#propuesta" class="topbar-nav-link">Propuesta</a>
+            <a href="#stack" class="topbar-nav-link">Stack</a>
+            <a href="#formacion" class="topbar-nav-link">Formación</a>
+        </nav>
+        <div style="display: flex; align-items: center; gap: 24px;">
+            <span class="material-symbols-outlined" style="cursor: pointer;">dark_mode</span>
+            <button class="btn-connect" onclick="window.location.href='experience.html#contacto'">Contactar</button>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main style="padding-top: 128px; padding-left: 112px;">
+
+        <!-- ═══════════════════════════════════════════════════
+             SECCIÓN 1: HERO / BIO
+        ════════════════════════════════════════════════════ -->
+        <section class="about-hero" style="padding-bottom: 96px;">
+            <div class="hero-bg-word">SOBRE</div>
+
+            <div class="hero-grid">
+                <!-- Columna izquierda: Headline + badges -->
+                <div style="position: relative; z-index: 10;">
+                    <h1 class="hero-headline">
+                        El <span style="color: var(--color-primary); font-style: italic;">Puente</span><br>
+                        <span class="text-outline">Digital</span>
+                    </h1>
+
+                    <div style="align-items: center; margin-bottom: 40px;">
+                        <span class="hero-badge">Frontend & CX · Santiago, Chile</span>
+                        <span class="hero-availability">Disponible · Remoto / Híbrido</span>
+                    </div>
+
+                    <!-- Badge accesibilidad -->
+                    <div style="display: inline-flex; align-items: center; gap: 12px; background: var(--color-surface-low); padding: 12px 20px; border: 1px solid var(--color-outline-variant);">
+                        <span class="material-symbols-outlined" style="font-size: 18px; color: var(--color-primary);">accessible</span>
+                        <span style="font-family: var(--font-headline); font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.2em; color: var(--color-on-surface-variant);">
+                            Inscrito · Registro Nacional de Discapacidad (Ley 21.015)
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Columna derecha: Quote card fusionada con la bio -->
+                <div class="quote-card">
+                    <p class="quote-text">
+                        "El mejor código no sirve de nada si no resuelve un problema real del usuario. Mi enfoque combina el rigor analítico de la tecnología con la empatía de la atención al cliente."
+                    </p>
+                    <p class="quote-bio">
+                        Soy un profesional tecnológico con <strong>+5 años en éxito del cliente</strong> que dio el salto
+                        a la creación de productos digitales. Hoy construyo plataformas web
+                        <strong>accesibles (WCAG) y centradas en el usuario</strong>, usando metodologías
+                        ágiles, bases de Frontend e <strong>IA (Prompting)</strong> para acelerar el desarrollo.
+                    </p>
+                    <p class="quote-body">
+                        Soy el puente perfecto entre lo que el <strong>negocio necesita</strong>,
+                        lo que el <strong>usuario pide</strong> y lo que la <strong>tecnología puede hacer</strong>.
+                    </p>
+                    <div style="margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--color-outline-variant); display: flex; align-items: center; justify-content: space-between;">
+                        <div>
+                            <p style="font-family: var(--font-headline); font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.2em; color: var(--color-primary);">Pedro Silva Rojas</p>
+                            <p style="font-size: 12px; color: var(--color-on-surface-variant); margin-top: 4px;">Frontend & CX | Gestor de Productos Digitales</p>
+                        </div>
+                        <span style="font-family: var(--font-headline); font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.2em; color: var(--color-on-surface-variant); opacity: 0.5;">Santiago, Chile</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════════════════════════════════════════════
+             SECCIÓN 2: PROPUESTA DE VALOR
+        ═════════════════════════════════════════════════ -->
+        <section class="valor-section" id="propuesta">
+            <div class="section-header">
+                <h2 class="section-title">Mi Propuesta<br>de Valor</h2>
+                <div class="section-rule"></div>
+            </div>
+
+            <div class="valor-grid">
+                <!-- Tarjeta 1: Producto & Agilidad -->
+                <div class="valor-card">
+                    <span class="valor-num">01</span>
+                    <span class="material-symbols-outlined valor-icon" style="color: var(--color-primary);">tactic</span>
+                    <h3>Visión de Producto & Agilidad</h3>
+                    <p>
+                        Traduzco requerimientos complejos en historias de usuario claras.
+                        Uso <strong style="color: white;">Scrum e IA</strong> para optimizar procesos, reducir fricción
+                        y alinear equipos desde el Discovery hasta el Delivery.
+                    </p>
+                    <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px;">
+                        <span style="padding: 3px 10px; background: rgba(161, 166, 255, 0.08); border: 1px solid rgba(161, 166, 255, 0.2); color: var(--color-primary); font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;">Scrum</span>
+                        <span style="padding: 3px 10px; background: rgba(161, 166, 255, 0.08); border: 1px solid rgba(161, 166, 255, 0.2); color: var(--color-primary); font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;">Product Owner</span>
+                        <span style="padding: 3px 10px; background: rgba(161, 166, 255, 0.08); border: 1px solid rgba(161, 166, 255, 0.2); color: var(--color-primary); font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;">IA Prompting</span>
+                    </div>
+                </div>
+
+                <!-- Tarjeta 2: UX/UI -->
+                <div class="valor-card">
+                    <span class="valor-num">02</span>
+                    <span class="material-symbols-outlined valor-icon" style="color: var(--color-secondary);">terminal</span>
+                    <h3>Desarrollo Centrado en UX/UI</h3>
+                    <p>
+                        Construyo interfaces web <strong style="color: white;">responsive</strong> priorizando la
+                        accesibilidad web (WCAG) y el SEO. Stack principal:
+                        Vue.js, Firebase y WordPress para soluciones de alto impacto.
+                    </p>
+                    <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px;">
+                        <span style="padding: 3px 10px; background: rgba(255, 86, 237, 0.08); border: 1px solid rgba(255, 86, 237, 0.2); color: var(--color-secondary); font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;">Vue.js 3</span>
+                        <span style="padding: 3px 10px; background: rgba(255, 86, 237, 0.08); border: 1px solid rgba(255, 86, 237, 0.2); color: var(--color-secondary); font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;">WCAG</span>
+                        <span style="padding: 3px 10px; background: rgba(255, 86, 237, 0.08); border: 1px solid rgba(255, 86, 237, 0.2); color: var(--color-secondary); font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;">Firebase</span>
+                    </div>
+                </div>
+
+                <!-- Tarjeta 3: CX & QA -->
+                <div class="valor-card">
+                    <span class="valor-num">03</span>
+                    <span class="material-symbols-outlined valor-icon" style="color: var(--color-tertiary-fixed);">handshake</span>
+                    <h3>Customer Success & QA</h3>
+                    <p>
+                        <strong style="color: white;">+5 años</strong> gestionando clientes B2B/B2C, testeando
+                        interfaces y resolviendo incidencias críticas bajo presión. CSAT
+                        sostenido sobre +90% en entornos fintech.
+                    </p>
+                    <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px;">
+                        <span style="padding: 3px 10px; background: rgba(202, 253, 0, 0.08); border: 1px solid rgba(202, 253, 0, 0.2); color: var(--color-tertiary-fixed); font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;">CSAT +90%</span>
+                        <span style="padding: 3px 10px; background: rgba(202, 253, 0, 0.08); border: 1px solid rgba(202, 253, 0, 0.2); color: var(--color-tertiary-fixed); font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;">QA Testing</span>
+                        <span style="padding: 3px 10px; background: rgba(202, 253, 0, 0.08); border: 1px solid rgba(202, 253, 0, 0.2); color: var(--color-tertiary-fixed); font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;">B2B / B2C</span>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- ═══════════════════════════════════════════════════
+             SECCIÓN 3: SKILL MATRIX / MI STACK & HERRAMIENTAS
+        ═════════════════════════════════════════════════ -->
+        <section class="skill-matrix" id="stack" style="margin-right: 0;">
+            <!-- Bridge callout → transición desde valores -->
+            <div class="bridge-callout" style="border-top: none; margin-top: 0; padding-bottom: 64px; border-bottom: 1px solid rgba(255,255,255,0.05);">
+                <div class="bridge-label">¿Cómo<br>lo construyo?</div>
+                <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 24px;">
+                    <p class="bridge-text">
+                        Estas son las tecnologías, metodologías y herramientas con las que
+                        hago realidad cada proyecto — desde el <strong>primer commit</strong>
+                        hasta el <strong>lanzamiento con el usuario</strong>.
+                    </p>
+                    <span class="material-symbols-outlined transition-arrow" style="color: var(--color-tertiary); font-size: 32px; animation: bounce 2s infinite;">south</span>
+                </div>
+            </div>
+
+            <div class="skill-matrix-bg">STACK</div>
+
+            <div class="skill-matrix-header">
+                <h2>Mi Stack &<br>Herramientas</h2>
+                <p>Tecnologías, metodologías y herramientas que uso en el día a día.</p>
+            </div>
+
+            <!-- Tecnologías -->
+            <div class="stack-section">
+                <p class="stack-label">▸ Tecnologías</p>
+                <div class="skill-grid">
+                    <div class="skill-box">
+                        <h5>HT</h5>
+                        <span>HTML5</span>
+                    </div>
+                    <div class="skill-box">
+                        <h5>CS</h5>
+                        <span>CSS3</span>
+                    </div>
+                    <div class="skill-box">
+                        <h5>JS</h5>
+                        <span>JavaScript ES6+</span>
+                    </div>
+                    <div class="skill-box">
+                        <h5>VU</h5>
+                        <span>Vue.js 3</span>
+                    </div>
+                    <div class="skill-box">
+                        <h5>FB</h5>
+                        <span>Firebase</span>
+                    </div>
+                    <div class="skill-box">
+                        <h5>GIT</h5>
+                        <span>Git</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Plataformas -->
+            <div class="stack-section">
+                <p class="stack-label">▸ Plataformas & CMS</p>
+                <div class="skill-grid">
+                    <div class="skill-box">
+                        <h5>WP</h5>
+                        <span>WordPress</span>
+                    </div>
+                    <div class="skill-box">
+                        <h5>WC</h5>
+                        <span>WooCommerce</span>
+                    </div>
+                    <div class="skill-box" style="grid-column: span 4; opacity: 0.4; cursor: default;">
+                        <h5 style="font-size: 1rem;">+ Integraciones y APIs bajo demanda</h5>
+                        <span>E-commerce · Pagos · Analytics</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gestión & Producto -->
+            <div class="stack-section">
+                <p class="stack-label">▸ Gestión & Producto</p>
+                <div class="skill-grid skill-grid-3">
+                    <div class="skill-box">
+                        <h5>AG</h5>
+                        <span>Agile / Scrum</span>
+                    </div>
+                    <div class="skill-box">
+                        <h5>PO</h5>
+                        <span>Product Owner</span>
+                    </div>
+                    <div class="skill-box">
+                        <h5>AI</h5>
+                        <span>IA Prompting</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Soporte & CX -->
+            <div class="stack-section" style="margin-bottom: 0;">
+                <p class="stack-label">▸ Soporte & CX</p>
+                <div class="skill-grid skill-grid-3">
+                    <div class="skill-box">
+                        <h5>CX</h5>
+                        <span>Customer Success</span>
+                    </div>
+                    <div class="skill-box">
+                        <h5>QA</h5>
+                        <span>QA Testing</span>
+                    </div>
+                    <div class="skill-box">
+                        <h5>TK</h5>
+                        <span>Gestión de Tickets</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTAs -->
+            <div class="skill-ctas">
+                <a href="proyectos.html" class="btn-skill-cta">
+                    <span class="material-symbols-outlined" style="font-size: 16px; vertical-align: middle; margin-right: 8px;">terminal</span>
+                    Ver mis Proyectos
+                </a>
+                <a href="experience.html" class="btn-skill-cta btn-skill-cta-outline">
+                    <span class="material-symbols-outlined" style="font-size: 16px; vertical-align: middle; margin-right: 8px;">folder_open</span>
+                    Ver mi Experiencia
+                </a>
+            </div>
+        </section>
+
+        <!-- ═══════════════════════════════════════════════════
+             SECCIÓN 4: FORMACIÓN & CERTIFICACIONES
+        ═════════════════════════════════════════════════ -->
+        <section class="case-archive-list" id="formacion">
+            <div class="archive-header">
+                <h2>Formación &<br>Certificaciones</h2>
+                <span>Aprendizaje continuo</span>
+            </div>
+
+            <div class="archive-list">
+
+                <!-- 01 · Google PM -->
+                <div class="archive-item">
+                    <div class="archive-item-left">
+                        <span class="archive-num">01</span>
+                        <div class="archive-item-info">
+                            <h4>Certificado Profesional de Gestión de Proyectos</h4>
+                            <span class="archive-meta">Google · Coursera · 2024–2025</span>
+                        </div>
+                    </div>
+                    <div class="archive-item-right">
+                        <p class="archive-desc">Prompting avanzado, automatización de procesos y ciclos de proyecto con IA.</p>
+                        <span class="archive-badge badge-completado">Completado</span>
+                        <span class="material-symbols-outlined archive-arrow">arrow_forward</span>
+                    </div>
+                </div>
+
+                <!-- 02 · Product Owner Bootcamp -->
+                <div class="archive-item">
+                    <div class="archive-item-left">
+                        <span class="archive-num">02</span>
+                        <div class="archive-item-info">
+                            <h4>Product Owner — Bootcamp de Fundamentos</h4>
+                            <span class="archive-meta">PixeLab · 2025</span>
+                        </div>
+                    </div>
+                    <div class="archive-item-right">
+                        <p class="archive-desc">Roadmapping, historias de usuario, priorización WSJF y gestión de backlog.</p>
+                        <span class="archive-badge badge-completado">Completado</span>
+                        <span class="material-symbols-outlined archive-arrow">arrow_forward</span>
+                    </div>
+                </div>
+
+                <!-- 03 · Desarrollo Web -->
+                <div class="archive-item">
+                    <div class="archive-item-left">
+                        <span class="archive-num">03</span>
+                        <div class="archive-item-info">
+                            <h4>Desarrollo Web — Bootcamp Intensivo Frontend</h4>
+                            <span class="archive-meta">Vue.js · Firebase · 2023–2024</span>
+                        </div>
+                    </div>
+                    <div class="archive-item-right">
+                        <p class="archive-desc">Desarrollo end-to-end con Vue.js 3, Firebase, control de versiones y accesibilidad.</p>
+                        <span class="archive-badge badge-completado">Completado</span>
+                        <span class="material-symbols-outlined archive-arrow">arrow_forward</span>
+                    </div>
+                </div>
+
+                <!-- 04 · Marketing & E-commerce -->
+                <div class="archive-item">
+                    <div class="archive-item-left">
+                        <span class="archive-num">04</span>
+                        <div class="archive-item-info">
+                            <h4>Certificado Profesional de Marketing & E-commerce</h4>
+                            <span class="archive-meta">Google · Coursera · En curso</span>
+                        </div>
+                    </div>
+                    <div class="archive-item-right">
+                        <p class="archive-desc">SEO, estrategia digital, analítica y optimización de conversión.</p>
+                        <span class="archive-badge badge-cursando">En curso</span>
+                        <span class="material-symbols-outlined archive-arrow">arrow_forward</span>
+                    </div>
+                </div>
+
+                <!-- 05 · Complementarios -->
+                <div class="archive-item">
+                    <div class="archive-item-left">
+                        <span class="archive-num">05</span>
+                        <div class="archive-item-info">
+                            <h4>Inglés Técnico / Profesional & Diseño Web Core</h4>
+                            <span class="archive-meta">Formación complementaria continua</span>
+                        </div>
+                    </div>
+                    <div class="archive-item-right">
+                        <p class="archive-desc">Comprensión técnica en inglés y principios de diseño visual centrado en el usuario.</p>
+                        <span class="archive-badge badge-activo">Activo</span>
+                        <span class="material-symbols-outlined archive-arrow">arrow_forward</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="page-footer">
+            <div>
+                <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px;">
+                    <span style="background: var(--color-primary); color: #0600a5; width: 32px; height: 32px; display: inline-flex; align-items: center; justify-content: center; font-family: var(--font-headline); font-size: 11px; font-weight: 900; flex-shrink: 0;">NW</span>
+                    <span style="font-family: var(--font-headline); font-size: 1rem; font-weight: 900; color: var(--color-primary); text-transform: uppercase; letter-spacing: 0.05em;">NexoWeb</span>
+                </div>
+                <p style="font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--color-on-surface-variant);">©<span id="copyright-year">2025</span> NexoWeb · Pedro Silva</p>
+                <div style="margin-top: 16px; display: flex; gap: 32px;">
+                    <a href="#" style="font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase;">GitHub</a>
+                    <a href="#" style="font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase;">LinkedIn</a>
+                    <a href="https://wa.me/56997236064?text=Hola%20Pedro%2C%20estuve%20viendo%20tu%20portafolio%20y%20me%20interesa%20tu%20perfil%20h%C3%ADbrido%20(Tech%2BCX).%20Me%20gustar%C3%ADa%20conversar%20contigo." target="_blank" rel="noopener noreferrer" style="font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase;">WhatsApp</a>
+                </div>
+            </div>
+            <div style="text-align: right;">
+                <p style="font-family: var(--font-headline); font-size: 4rem; font-weight: 900; color: var(--color-tertiary); text-transform: uppercase; line-height: 1;">Trabajemos<br>Juntos</p>
+                <p style="font-family: var(--font-headline); font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--color-primary); margin-top: 16px;">Santiago, Chile · Remoto / Híbrido</p>
+            </div>
+        </footer>
+    </main>
+
+    <!-- WhatsApp FAB -->
+    <div style="position: fixed; bottom: 48px; right: 48px; z-index: 50;">
+        <a href="https://wa.me/56997236064?text=Hola%20Pedro%2C%20estuve%20viendo%20tu%20portafolio%20y%20me%20interesa%20tu%20perfil%20h%C3%ADbrido%20(Tech%2BCX).%20Me%20gustar%C3%ADa%20conversar%20contigo." target="_blank" rel="noopener noreferrer" title="Escríbeme por WhatsApp" style="width: 64px; height: 64px; background: var(--color-tertiary-fixed); color: #516700; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 20px 40px rgba(202,253,0,0.15); text-decoration: none; transition: transform 0.2s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+            <span class="material-symbols-outlined" style="font-size: 32px; font-variation-settings: 'FILL' 1;">chat_bubble</span>
+        </a>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script>
+        // ── Scroll-spy: navegación interna del topbar ────────────────────────
+        (function () {
+            const topbar  = document.getElementById('topbar');
+            const navLinks = document.querySelectorAll('.topbar-nav-link');
+            const sections = ['propuesta', 'stack', 'formacion'].map(id => document.getElementById(id));
+            const heroHeight = 300; // px mínimos para mostrar backdrop
+
+            function getActiveSection() {
+                // Calcula cuál sección ocupa más del 40% del viewport
+                const mid = window.scrollY + window.innerHeight * 0.4;
+                let active = null;
+                sections.forEach(sec => {
+                    if (!sec) return;
+                    if (sec.offsetTop <= mid) active = sec.id;
+                });
+                return active;
+            }
+
+            function updateNav() {
+                // Backdrop del topbar
+                if (window.scrollY > heroHeight) {
+                    topbar.classList.add('scrolled');
+                } else {
+                    topbar.classList.remove('scrolled');
+                }
+
+                // Links activos
+                const activeId = getActiveSection();
+                navLinks.forEach(link => {
+                    const target = link.getAttribute('href').replace('#', '');
+                    link.classList.toggle('is-active', target === activeId);
+                });
+            }
+
+            window.addEventListener('scroll', updateNav, { passive: true });
+            updateNav(); // estado inicial
+
+            // Scroll suave con offset del topbar fijo
+            navLinks.forEach(link => {
+                link.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').replace('#', '');
+                    const target   = document.getElementById(targetId);
+                    if (!target) return;
+                    const topbarH  = topbar.offsetHeight;
+                    const targetY  = target.getBoundingClientRect().top + window.scrollY - topbarH - 16;
+                    window.scrollTo({ top: targetY, behavior: 'smooth' });
+                });
+            });
+        })();
+    </script>
+</body>
+</html>

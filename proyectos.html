@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyectos | Pedro Silva Rojas</title>
+    <meta name="description" content="Proyectos de desarrollo Frontend y gestión de producto de Pedro Silva Rojas — de la estrategia al código.">
+    <link rel="stylesheet" href="styles/base.css">
+    <style>
+        /* ── Pixel grid bg ──────────────────────────────────── */
+        .pixel-grid {
+            background-image: radial-gradient(circle, #484847 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+
+        /* ── Topbar nav (intra-page) ────────────────────────── */
+        .topbar-nav { display: flex; gap: 40px; align-items: center; }
+
+        .topbar-nav-link {
+            font-family: var(--font-headline);
+            font-weight: 700;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: rgba(255, 255, 255, 0.4);
+            text-decoration: none;
+            position: relative;
+            transition: color 0.3s ease;
+            padding-bottom: 4px;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+
+        .topbar-nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0;
+            width: 0; height: 2px;
+            background: var(--color-tertiary-fixed);
+            transition: width 0.3s ease;
+        }
+
+        .topbar-nav-link:hover { color: rgba(255, 255, 255, 0.8); }
+
+        .topbar-nav-link.is-active {
+            color: var(--color-tertiary-fixed);
+        }
+
+        .topbar-nav-link.is-active::after { width: 100%; }
+
+        .topbar.scrolled {
+            background: rgba(14, 14, 14, 0.88);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--color-outline-variant);
+        }
+
+        /* ── Hero ─────────────────────────────────────────────── */
+        .projects-hero {
+            padding: 0 48px 80px;
+            position: relative;
+        }
+
+        .hero-bg-word {
+            position: absolute;
+            top: -24px; left: -60px;
+            font-size: 13rem;
+            font-family: var(--font-headline);
+            font-weight: 900;
+            color: rgba(255, 255, 255, 0.025);
+            user-select: none;
+            pointer-events: none;
+            z-index: 0;
+            text-transform: uppercase;
+            line-height: 1;
+        }
+
+        .hero-inner {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            flex-wrap: wrap;
+            gap: 32px;
+        }
+
+        .hero-headline {
+            font-family: var(--font-headline);
+            font-size: clamp(5rem, 8vw, 9rem);
+            font-weight: 900;
+            line-height: 0.88;
+            letter-spacing: -0.05em;
+            text-transform: uppercase;
+            margin-bottom: 32px;
+        }
+
+        /* Status box */
+        .status-box {
+            background: rgba(38, 38, 38, 0.7);
+            backdrop-filter: blur(12px);
+            padding: 24px 32px;
+            border-left: 2px solid var(--color-primary);
+            min-width: 240px;
+            align-self: flex-end;
+            flex-shrink: 0;
+        }
+
+        .pulse-dot {
+            width: 8px; height: 8px;
+            background: var(--color-tertiary-fixed);
+            border-radius: 50%;
+            box-shadow: 0 0 10px #cafd00;
+            flex-shrink: 0;
+        }
+
+        /* ── Filtros ──────────────────────────────────────────── */
+        .filter-bar {
+            padding: 0 48px;
+            margin-bottom: 64px;
+            display: flex;
+            align-items: center;
+            gap: 0;
+            border-bottom: 1px solid var(--color-outline-variant);
+        }
+
+        .filter-btn {
+            font-family: var(--font-headline);
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--color-on-surface-variant);
+            background: none;
+            border: none;
+            border-bottom: 3px solid transparent;
+            padding: 16px 24px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            margin-bottom: -1px;
+        }
+
+        .filter-btn:hover { color: white; }
+
+        .filter-btn.active {
+            color: var(--color-tertiary-fixed);
+            border-bottom-color: var(--color-tertiary-fixed);
+        }
+
+        .filter-count {
+            font-family: var(--font-headline);
+            font-size: 9px;
+            background: var(--color-surface-highest);
+            color: var(--color-on-surface-variant);
+            padding: 2px 7px;
+            margin-left: 6px;
+            vertical-align: middle;
+        }
+
+        /* ── Grilla principal ─────────────────────────────────── */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 24px;
+            padding: 0 48px;
+            margin-bottom: 24px;
+        }
+
+        /* Cards base */
+        .project-card {
+            background: var(--color-surface-low);
+            border: 1px solid var(--color-outline-variant);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-card:hover {
+            border-color: var(--color-primary);
+            background: var(--color-surface-high);
+        }
+
+        /* Card protagonista */
+        .card-hero {
+            grid-column: span 8;
+        }
+
+        /* Cards medianas */
+        .card-md {
+            grid-column: span 4;
+        }
+
+        .card-md-5 {
+            grid-column: span 5;
+        }
+
+        .card-md-7 {
+            grid-column: span 7;
+        }
+
+        .card-half {
+            grid-column: span 6;
+        }
+
+        /* ── Elementos internos de card ───────────────────────── */
+        .card-img {
+            width: 100%;
+            aspect-ratio: 16/9;
+            background: var(--color-surface-high);
+            border-bottom: 1px solid var(--color-outline-variant);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .card-img-placeholder {
+            font-family: var(--font-headline);
+            font-size: 10px;
+            color: rgba(255, 255, 255, 0.15);
+            letter-spacing: 0.5em;
+            text-transform: uppercase;
+        }
+
+        .card-body {
+            padding: 32px;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            justify-content: space-between;
+        }
+
+        .card-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 3px 10px;
+            margin-bottom: 14px;
+            font-family: var(--font-headline);
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+        }
+
+        .badge-dev {
+            border: 1px solid var(--color-primary);
+            color: var(--color-primary);
+        }
+
+        .badge-dev .badge-dot { background: var(--color-primary); }
+
+        .badge-po {
+            border: 1px solid var(--color-secondary);
+            color: var(--color-secondary);
+        }
+
+        .badge-po .badge-dot { background: var(--color-secondary); }
+
+        .badge-ecom {
+            border: 1px solid var(--color-tertiary-fixed);
+            color: var(--color-tertiary-fixed);
+        }
+
+        .badge-ecom .badge-dot { background: var(--color-tertiary-fixed); }
+
+        .badge-dot {
+            width: 6px; height: 6px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .card-title {
+            font-family: var(--font-headline);
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: -0.02em;
+            margin-bottom: 12px;
+            transition: color 0.3s ease;
+            color: white;
+            text-decoration: none;
+            display: block;
+        }
+
+        .card-title:hover { color: var(--color-primary); }
+        .project-card:hover .card-title { color: var(--color-primary); }
+
+        .card-desc {
+            font-size: 13px;
+            line-height: 1.65;
+            color: var(--color-on-surface-variant);
+            margin-bottom: 20px;
+        }
+
+        .card-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 24px;
+        }
+
+        .tag {
+            background: var(--color-surface-highest);
+            padding: 3px 10px;
+            font-family: var(--font-headline);
+            font-size: 9px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--color-primary);
+        }
+
+        .tag-po {
+            color: var(--color-secondary);
+        }
+
+        .card-footer {
+            border-top: 1px solid rgba(72, 72, 71, 0.3);
+            padding-top: 16px;
+            margin-top: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .card-domain {
+            font-family: var(--font-headline);
+            font-size: 10px;
+            color: var(--color-tertiary);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            flex: 1;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .card-link {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: color 0.3s ease;
+            flex-shrink: 0;
+            font-family: var(--font-headline);
+            font-size: 11px;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        .card-link:hover { color: var(--color-primary); }
+
+        /* ── Separador de sección PO ──────────────────────────── */
+        .section-divider {
+            padding: 64px 48px 48px;
+            display: flex;
+            align-items: flex-end;
+            gap: 32px;
+        }
+
+        .divider-label {
+            font-family: var(--font-headline);
+            font-size: 2.5rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: -0.03em;
+            line-height: 1;
+        }
+
+        .divider-sub {
+            font-size: 13px;
+            color: var(--color-on-surface-variant);
+            max-width: 400px;
+            line-height: 1.65;
+            padding-bottom: 4px;
+        }
+
+        .divider-rule {
+            flex: 1;
+            height: 1px;
+            background: var(--color-outline-variant);
+            margin-bottom: 8px;
+        }
+
+        /* ── PO Grid (fila de 3 cards iguales) ───────────────── */
+        .po-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            padding: 0 48px;
+            margin-bottom: 80px;
+        }
+
+        .po-card {
+            background: var(--color-surface-low);
+            border: 1px solid var(--color-outline-variant);
+            border-top: 3px solid var(--color-secondary);
+            padding: 32px;
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .po-card:hover {
+            background: var(--color-surface-high);
+            border-color: var(--color-secondary);
+        }
+
+        .po-card-num {
+            font-family: var(--font-headline);
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: rgba(255, 255, 255, 0.06);
+            line-height: 1;
+            margin-bottom: 16px;
+        }
+
+        .po-card-title {
+            font-family: var(--font-headline);
+            font-size: 1.3rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: -0.02em;
+            color: white;
+            margin-bottom: 8px;
+            transition: color 0.3s ease;
+        }
+
+        .po-card:hover .po-card-title { color: var(--color-secondary); }
+
+        .po-card-sub {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--color-secondary);
+            margin-bottom: 20px;
+        }
+
+        .po-card-desc {
+            font-size: 13px;
+            line-height: 1.65;
+            color: var(--color-on-surface-variant);
+            flex: 1;
+            margin-bottom: 24px;
+        }
+
+        .po-card-tools {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 24px;
+        }
+
+        .tool-tag {
+            background: rgba(255, 86, 237, 0.08);
+            border: 1px solid rgba(255, 86, 237, 0.2);
+            color: var(--color-secondary);
+            padding: 2px 10px;
+            font-family: var(--font-headline);
+            font-size: 9px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .po-card-footer {
+            border-top: 1px solid rgba(72, 72, 71, 0.3);
+            padding-top: 16px;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        /* ── CTA ─────────────────────────────────────────────── */
+        .cta-section {
+            padding: 96px 48px;
+            background: var(--color-surface-low);
+            border-top: 1px solid var(--color-outline-variant);
+            text-align: center;
+            position: relative;
+        }
+
+        /* ── Filtrado JS ─────────────────────────────────────── */
+        .project-card[data-cat],
+        .po-card[data-cat] {
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .hidden-by-filter {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+    <!-- Side Navigation Bar -->
+    <nav class="sidenav">
+        <div>
+            <div class="sidenav-logo">PS</div>
+            <div class="sidenav-links">
+                <a href="index.html" class="sidenav-link">
+                    <span class="material-symbols-outlined">person</span>
+                    <small>Inicio</small>
+                </a>
+                <a href="about.html" class="sidenav-link">
+                    <span class="material-symbols-outlined">history_edu</span>
+                    <small>Sobre Mí</small>
+                </a>
+                <a href="proyectos.html" class="sidenav-link active">
+                    <span class="material-symbols-outlined">grid_view</span>
+                    <small>Proyectos</small>
+                </a>
+            </div>
+        </div>
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 24px;">
+            <a href="experience.html" class="sidenav-link">
+                <span class="material-symbols-outlined">folder_open</span>
+                <small>Experiencia</small>
+            </a>
+            <div style="width: 40px; height: 40px; border: 1px solid var(--color-outline-variant); overflow: hidden;">
+                <img src="img/pedro3.png" alt="Profile" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+        </div>
+    </nav>
+
+    <!-- Top App Bar -->
+    <header class="topbar" id="topbar">
+        <div class="topbar-title">PORTAFOLIO_PS</div>
+        <nav class="topbar-nav" aria-label="Filtrar proyectos">
+            <a href="#section-dev" class="topbar-nav-link">Frontend</a>
+            <a href="#section-po" class="topbar-nav-link">Product Owner</a>
+        </nav>
+        <div style="display: flex; align-items: center; gap: 24px;">
+            <span class="material-symbols-outlined" style="cursor: pointer;">dark_mode</span>
+            <button class="btn-connect" onclick="window.location.href='experience.html#contacto'">Contactar</button>
+        </div>
+    </header>
+
+    <main style="padding-top: 128px; padding-left: 112px;">
+        <!-- Glow deco -->
+        <div style="position: absolute; top: 80px; right: -5%; width: 320px; height: 320px; background: rgba(161,166,255,0.06); border-radius: 50%; filter: blur(100px); z-index: -1; pointer-events: none;"></div>
+
+        <!-- ═══ HERO ════════════════════════════════════════════ -->
+        <section class="projects-hero">
+            <div class="hero-bg-word">BUILD</div>
+            <div class="hero-inner">
+                <div style="position: relative; z-index: 10;">
+                    <h1 class="hero-headline">
+                        Mis<br><span style="color: var(--color-primary); font-style: italic;">Proyectos</span>
+                    </h1>
+                    <p style="font-size: 1.2rem; color: var(--color-on-surface-variant); max-width: 520px; line-height: 1.65;">
+                        De la estrategia a la ejecución. Una selección de proyectos donde combino
+                        <strong style="color: white;">desarrollo Frontend</strong>, metodologías ágiles y experiencia del cliente
+                        para resolver problemas reales de negocio.
+                    </p>
+                </div>
+                <div class="status-box">
+                    <div style="font-family: var(--font-headline); font-size: 10px; color: var(--color-primary); text-transform: uppercase; letter-spacing: 0.2em; margin-bottom: 12px;">Estado del Portfolio</div>
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                        <div class="pulse-dot"></div>
+                        <span style="font-family: var(--font-headline); font-size: 13px; font-weight: 700;">5 PROYECTOS FRONTEND</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <div style="width: 8px; height: 8px; background: var(--color-secondary); border-radius: 50%; flex-shrink: 0; box-shadow: 0 0 8px rgba(255,86,237,0.6);"></div>
+                        <span style="font-family: var(--font-headline); font-size: 13px; font-weight: 700;">3 CASOS PRODUCT OWNER</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ FILTRO BAR ══════════════════════════════════════ -->
+        <div class="filter-bar" id="filter-bar">
+            <button class="filter-btn active" data-filter="all">
+                Todos <span class="filter-count">8</span>
+            </button>
+            <button class="filter-btn" data-filter="dev">
+                Desarrollo Frontend <span class="filter-count">5</span>
+            </button>
+            <button class="filter-btn" data-filter="po">
+                Product Owner <span class="filter-count">3</span>
+            </button>
+        </div>
+
+        <!-- ═══ GRID FRONTEND ═══════════════════════════════════ -->
+        <div id="section-dev">
+            <!-- Divisor sección Frontend -->
+            <div class="section-divider">
+                <div>
+                    <p style="font-family: var(--font-headline); font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.3em; color: var(--color-primary); margin-bottom: 8px;">Desarrollo Web · Frontend</p>
+                    <h2 class="divider-label">Proyectos<br><span style="color: var(--color-primary);">Frontend</span></h2>
+                </div>
+                <div class="divider-rule"></div>
+                <p class="divider-sub">Sitios y aplicaciones web reales: desde e-commerce B2B hasta SPAs inmersivas, construidos con accesibilidad, rendimiento y conversión como prioridades.</p>
+            </div>
+
+            <section class="project-grid" id="dev-grid">
+
+                <!-- ── 01 · PaulaLand PROTAGONISTA (span 8) ── -->
+                <div class="project-card card-hero" data-cat="dev">
+                    <div class="pixel-grid" style="position: absolute; inset: 0; opacity: 0.15; pointer-events: none;"></div>
+                    <div style="position: relative; z-index: 10; padding: 40px; display: flex; gap: 40px; flex: 1;">
+                        <!-- Imagen preview -->
+                        <div class="card-img" style="width: 48%; aspect-ratio: 16/9; border-bottom: none; border-right: 1px solid var(--color-outline-variant); flex-shrink: 0; border-radius: 0; background: var(--color-surface-high);">
+                            <img src="img/projects/paulaland.png" alt="PaulaLand preview" style="width: 100%; height: 100%; object-fit: cover; opacity: 0.9; transition: opacity 0.3s ease;" loading="lazy">
+                        </div>
+                        <!-- Contenido -->
+                        <div style="flex: 1; display: flex; flex-direction: column; justify-content: space-between;">
+                            <div>
+                                <span class="card-badge badge-dev">
+                                    <span class="badge-dot"></span>PLATAFORMA WEB · DESTACADO
+                                </span>
+                                <a href="https://paulaland.cl/" class="card-title" style="font-size: 2.5rem; display: block;" title="Ver PaulaLand">
+                                    PAULALAND
+                                </a>
+                                <p class="card-desc">
+                                    Single Page Application (SPA) inmersiva que maneja galerías fotográficas de alta resolución sin sacrificar el rendimiento ni la experiencia móvil. Diseño custom con animaciones UI avanzadas.
+                                </p>
+                                <div class="card-tags">
+                                    <span class="tag">Vue.js 3</span>
+                                    <span class="tag">Vuex</span>
+                                    <span class="tag">Vite</span>
+                                    <span class="tag">Animaciones UI</span>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <span class="card-domain">paulaland.cl</span>
+                                <a href="https://paulaland.cl/" class="card-link" target="_blank" rel="noopener noreferrer" title="Ver PaulaLand">
+                                    <span>Ver Proyecto</span>
+                                    <span class="material-symbols-outlined" style="font-size: 18px;">arrow_outward</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ── 02 · Santa Sofía (span 4) ── -->
+                <div class="project-card card-md" data-cat="dev">
+                    <!-- Banner imagen slim -->
+                    <div style="width: 100%; height: 90px; overflow: hidden; border-bottom: 1px solid var(--color-outline-variant); flex-shrink: 0; background: var(--color-surface-high);">
+                        <img src="img/projects/santa-sofia.png" alt="Santa Sofía preview" style="width: 100%; height: 100%; object-fit: cover; object-position: top; opacity: 0.85; transition: opacity 0.3s ease;" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div>
+                            <span class="card-badge badge-ecom">
+                                <span class="badge-dot"></span>E-COMMERCE B2B/B2C
+                            </span>
+                            <a href="#" class="card-title" style="font-size: 1.6rem;" title="Ver Santa Sofía">SANTA SOFÍA</a>
+                            <p class="card-desc">
+                                Transformación digital de empresa industrial. E-commerce con WooCommerce que aumentó las conversiones móviles y el tráfico orgánico.
+                            </p>
+                            <div class="card-tags">
+                                <span class="tag">WordPress</span>
+                                <span class="tag">WooCommerce</span>
+                                <span class="tag">SEO</span>
+                                <span class="tag">JS</span>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <span class="card-domain">inversionessantasofia.cl</span>
+                            <a href="https://inversionessantasofia.cl/" class="card-link" target="_blank" rel="noopener noreferrer" title="Ver Santa Sofía">
+                                <span>Ver Proyecto</span>
+                                <span class="material-symbols-outlined" style="font-size: 18px;">arrow_outward</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ── 03 · AcceMap (span 5) ── -->
+                <div class="project-card card-md-5" data-cat="dev" style="position: relative;">
+                    <div style="position: absolute; top: 0; left: 0; width: 80px; height: 3px; background: var(--color-primary); z-index: 1;"></div>
+                    <div class="card-img" style="height: 150px; aspect-ratio: unset; border-bottom: 1px solid var(--color-outline-variant); background: var(--color-surface-high);">
+                        <img src="img/projects/doghome.png" alt="Dog Home preview" style="width: 100%; height: 100%; object-fit: cover; object-position: top; opacity: 0.85; transition: opacity 0.3s ease;" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div>
+                            <span class="card-badge badge-dev">
+                                <span class="badge-dot"></span>APP WEB INTERACTIVA
+                            </span>
+                            <a href="https://dog-home-79316.web.app/" class="card-title" style="font-size: 1.8rem;" title="Ver Dog Home">DOG HOME</a>
+                            <p class="card-desc">
+                                Plataforma de adopción de mascotas. Simplifica la búsqueda y el agendamiento de visitas para facilitar la conexión entre adoptantes y animales.
+                            </p>
+                            <div class="card-tags">
+                                <span class="tag">Vue.js 3</span>
+                                <span class="tag">Vuex</span>
+                                <span class="tag">Vuetify</span>
+                                <span class="tag">SCSS</span>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <span class="card-domain">dog-home-79316.web.app</span>
+                            <a href="https://dog-home-79316.web.app/" class="card-link" target="_blank" rel="noopener noreferrer" title="Ver Demo Dog Home">
+                                <span>Ver Demo</span>
+                                <span class="material-symbols-outlined" style="font-size: 18px;">arrow_outward</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ── 04 · NexoWeb (span 7) ── -->
+                <div class="project-card card-md-7" data-cat="dev" style="flex-direction: row; background: rgba(38,38,38,0.5); backdrop-filter: blur(4px); align-items: stretch;">
+                    <!-- Imagen preview lateral -->
+                    <div style="width: 42%; flex-shrink: 0; border-right: 1px solid var(--color-outline-variant); overflow: hidden; background: var(--color-surface-high);">
+                        <img src="img/projects/nexoweb.png" alt="NexoWeb preview" style="width: 100%; height: 100%; object-fit: cover; object-position: top; opacity: 0.85; transition: opacity 0.3s ease;" loading="lazy">
+                    </div>
+                    <div class="card-body" style="padding: 24px; display: flex; flex-direction: column; justify-content: space-between; flex: 1;">
+                        <div>
+                            <span class="card-badge badge-dev">
+                                <span class="badge-dot"></span>IDENTIDAD DIGITAL
+                            </span>
+                            <a href="https://nexoweb.cl/" class="card-title" style="font-size: 2.2rem; line-height: 1.1;" title="Ver NexoWeb">NEXOWEB</a>
+                            <p class="card-desc" style="font-size: 12px; margin-top: 8px;">
+                                Plataforma de servicios y diseño. Arquitectura web moderna, ultrarrápida y 100% accesible (WCAG), diseñada específicamente para maximizar la captación de leads.
+                            </p>
+                            <div class="card-tags" style="margin-bottom: 0;">
+                                <span class="tag">HTML5</span>
+                                <span class="tag">CSS3</span>
+                                <span class="tag">JS ES6+</span>
+                                <span class="tag">SEO</span>
+                            </div>
+                        </div>
+                        <div class="card-footer" style="padding-top: 12px; margin-top: 12px;">
+                            <span class="card-domain">nexoweb.cl</span>
+                            <a href="https://nexoweb.cl/" class="card-link" target="_blank" rel="noopener noreferrer" title="Ver NexoWeb">
+                                <span>Ver Proyecto</span>
+                                <span class="material-symbols-outlined" style="font-size: 18px;">arrow_outward</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ── 05 · Dog Home (span 12 → fila completa compacta) ── -->
+                <div class="project-card" style="grid-column: span 12; flex-direction: row; align-items: stretch;" data-cat="dev">
+                    <div style="width: 280px; flex-shrink: 0; background: var(--color-surface-highest); border-right: 1px solid var(--color-outline-variant); overflow: hidden;">
+                        <img src="img/projects/accemap.png" alt="AcceMap preview" style="width: 100%; height: 100%; object-fit: cover; opacity: 0.8; transition: opacity 0.3s ease;" loading="lazy">
+                    </div>
+                    <div class="card-body" style="flex-direction: row; align-items: center; gap: 40px; flex: 1;">
+                        <div style="flex: 1;">
+                            <span class="card-badge" style="border: 1px solid var(--color-tertiary); color: var(--color-tertiary);">
+                                <span class="badge-dot" style="background: var(--color-tertiary);"></span>ACCESIBILIDAD WEB ♿
+                            </span>
+                            <a href="https://accemap.cl/" class="card-title" style="font-size: 1.6rem;" title="Ver AcceMap">ACCEMAP</a>
+                            <p class="card-desc" style="margin-bottom: 0;">
+                                Plataforma de impacto social. Mapa colaborativo que empodera a personas con discapacidad con datos de accesibilidad verificados por la comunidad.
+                            </p>
+                        </div>
+                        <div style="flex-shrink: 0;">
+                            <div class="card-tags">
+                                <span class="tag">HTML</span>
+                                <span class="tag">CSS</span>
+                                <span class="tag">Leaflet</span>
+                                <span class="tag">Bootstrap</span>
+                                <span class="tag">Firebase</span>
+                            </div>
+                            <a href="https://accemap.cl/" class="card-link" style="justify-content: flex-end;" target="_blank" rel="noopener noreferrer" title="Ver AcceMap">
+                                <span>Ver Proyecto</span>
+                                <span class="material-symbols-outlined" style="font-size: 18px;">arrow_outward</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+        </div>
+
+        <!-- ═══ DIVISOR SECCIÓN PO ═════════════════════════════ -->
+        <div class="section-divider" id="section-po">
+            <div>
+                <p style="font-family: var(--font-headline); font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.3em; color: var(--color-secondary); margin-bottom: 8px;">Product Owner · Agile</p>
+                <h2 class="divider-label">Gestión de<br><span style="color: var(--color-secondary);">Producto</span></h2>
+            </div>
+            <div class="divider-rule"></div>
+            <p class="divider-sub">Casos académicos donde apliqué metodologías Scrum, priorización y discovery para definir soluciones digitales con impacto real.</p>
+        </div>
+
+        <!-- ═══ GRID PO ═════════════════════════════════════════ -->
+        <div class="po-grid">
+
+            <!-- ── 06 · FlowControl ── -->
+            <div class="po-card" data-cat="po">
+                <!-- Banner imagen slim -->
+                <div style="margin: -32px -32px 20px -32px; height: 80px; overflow: hidden; border-bottom: 1px solid rgba(255,86,237,0.15);">
+                    <img src="img/projects/flowcontrol.png" alt="FlowControl preview" style="width: 100%; height: 100%; object-fit: cover; object-position: top; opacity: 0.7; transition: opacity 0.3s ease;" loading="lazy">
+                </div>
+                <span class="card-badge badge-po" style="margin-bottom: 12px;">
+                    <span class="badge-dot"></span>DIGITALIZACIÓN ÁGIL
+                </span>
+                <a href="flowcontrol.html" style="text-decoration: none; display: block;"><h3 class="po-card-title">FlowControl</h3></a>
+                <p class="po-card-sub">Viáticos & Administración</p>
+                <p class="po-card-desc">
+                    Conceptualización de Web App que reduce el tiempo de aprobación administrativa en un <strong style="color: white;">50%</strong> mediante metodologías Scrum. Desde el service blueprint hasta el backlog priorizado.
+                </p>
+                <div class="po-card-tools">
+                    <span class="tool-tag">Jira</span>
+                    <span class="tool-tag">Kanban</span>
+                    <span class="tool-tag">Service Blueprint</span>
+                    <span class="tool-tag">WSJF</span>
+                </div>
+                <div class="po-card-footer">
+                    <a href="flowcontrol.html" class="card-link" title="Ver Detalles FlowControl">
+                        <span>Ver Detalles</span>
+                        <span class="material-symbols-outlined" style="font-size: 18px;">arrow_forward</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- ── 07 · EvoluTech ── -->
+            <div class="po-card" data-cat="po">
+                <!-- Banner imagen slim -->
+                <div style="margin: -32px -32px 20px -32px; height: 80px; overflow: hidden; border-bottom: 1px solid rgba(255,86,237,0.15);">
+                    <img src="img/projects/evolutech.png" alt="EvoluTech preview" style="width: 100%; height: 100%; object-fit: cover; object-position: top; opacity: 0.7; transition: opacity 0.3s ease;" loading="lazy">
+                </div>
+                <span class="card-badge badge-po" style="margin-bottom: 12px;">
+                    <span class="badge-dot"></span>TRANSFORMACIÓN DIGITAL
+                </span>
+                <a href="evolutech.html" style="text-decoration: none; display: block;"><h3 class="po-card-title">EvoluTech</h3></a>
+                <p class="po-card-sub">Estrategia IoT Industrial</p>
+                <p class="po-card-desc">
+                    Hoja de ruta IoT para planta manufacturera con <strong style="color: white;">ROI positivo proyectado en menos de 12 meses</strong>. Lean Canvas, arquitectura de plataforma y roadmap estratégico.
+                </p>
+                <div class="po-card-tools">
+                    <span class="tool-tag">Lean Canvas</span>
+                    <span class="tool-tag">Roadmap</span>
+                    <span class="tool-tag">Arquitectura IoT</span>
+                </div>
+                <div class="po-card-footer">
+                    <a href="evolutech.html" class="card-link" title="Ver Detalles EvoluTech">
+                        <span>Ver Detalles</span>
+                        <span class="material-symbols-outlined" style="font-size: 18px;">arrow_forward</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- ── 08 · Agile Inception ── -->
+            <div class="po-card" data-cat="po">
+                <!-- Banner imagen slim -->
+                <div style="margin: -32px -32px 20px -32px; height: 80px; overflow: hidden; border-bottom: 1px solid rgba(255,86,237,0.15);">
+                    <img src="img/projects/agile-inception.png" alt="Agile Inception preview" style="width: 100%; height: 100%; object-fit: cover; object-position: top; opacity: 0.7; transition: opacity 0.3s ease;" loading="lazy">
+                </div>
+                <span class="card-badge badge-po" style="margin-bottom: 12px;">
+                    <span class="badge-dot"></span>FACILITACIÓN ÁGIL
+                </span>
+                <a href="agileinception.html" style="text-decoration: none; display: block;"><h3 class="po-card-title">Agile Inception</h3></a>
+                <p class="po-card-sub">Plataforma EdTech · MVP</p>
+                <p class="po-card-desc">
+                    Facilitación ágil para definir un MVP estricto: centralización del <strong style="color: white;">85% del acceso educativo</strong> y reducción de fricción del usuario. Story mapping y prototipado en Figma.
+                </p>
+                <div class="po-card-tools">
+                    <span class="tool-tag">Inception Deck</span>
+                    <span class="tool-tag">Story Mapping</span>
+                    <span class="tool-tag">Figma</span>
+                </div>
+                <div class="po-card-footer">
+                    <a href="agileinception.html" class="card-link" title="Ver Detalles Agile Inception">
+                        <span>Ver Detalles</span>
+                        <span class="material-symbols-outlined" style="font-size: 18px;">arrow_forward</span>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ═══ CTA ═════════════════════════════════════════════ -->
+        <section class="cta-section">
+            <div class="pixel-grid" style="position: absolute; inset: 0; opacity: 0.08; pointer-events: none;"></div>
+            <div style="position: relative; z-index: 10;">
+                <p style="font-family: var(--font-headline); font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.3em; color: var(--color-primary); margin-bottom: 24px;">¿Tienes un proyecto en mente?</p>
+                <h2 class="font-headline" style="font-size: clamp(2.5rem, 5vw, 4.5rem); font-weight: 900; text-transform: uppercase; line-height: 1; margin-bottom: 40px;">
+                    HABLEMOS_DE<br><span style="color: var(--color-tertiary-fixed);">TU_PROYECTO</span>
+                </h2>
+                <div style="display: flex; justify-content: center; gap: 24px; flex-wrap: wrap;">
+                    <button onclick="window.location.href='experience.html#contacto'" style="background: var(--color-primary); color: #0600a5; padding: 18px 48px; font-family: var(--font-headline); font-weight: 900; text-transform: uppercase; letter-spacing: 0.15em; border: none; cursor: pointer; transition: background 0.2s ease;" onmouseover="this.style.background='var(--color-primary-container)'" onmouseout="this.style.background='var(--color-primary)'">
+                        INICIAR_PROYECTO
+                    </button>
+                    <a href="https://wa.me/56997236064?text=Hola%20Pedro%2C%20estuve%20viendo%20tu%20portafolio%20y%20me%20interesa%20tu%20perfil%20h%C3%ADbrido%20(Tech%2BCX).%20Me%20gustar%C3%ADa%20conversar%20contigo." target="_blank" rel="noopener noreferrer" style="background: transparent; border: 1px solid rgba(255,255,255,0.2); color: white; padding: 18px 48px; font-family: var(--font-headline); font-weight: 900; text-transform: uppercase; letter-spacing: 0.15em; text-decoration: none; display: inline-block; transition: border-color 0.2s ease;" onmouseover="this.style.borderColor='rgba(255,255,255,0.5)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.2)'">
+                        WHATSAPP
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer style="padding: 48px; border-top: 1px solid var(--color-outline-variant); display: flex; justify-content: space-between; align-items: flex-end;">
+            <div>
+                <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px;">
+                    <span style="background: var(--color-primary); color: #0600a5; width: 32px; height: 32px; display: inline-flex; align-items: center; justify-content: center; font-family: var(--font-headline); font-size: 11px; font-weight: 900; flex-shrink: 0;">NW</span>
+                    <span style="font-family: var(--font-headline); font-size: 1rem; font-weight: 900; color: var(--color-primary); text-transform: uppercase; letter-spacing: 0.05em;">NexoWeb</span>
+                </div>
+                <p style="font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--color-on-surface-variant);">©<span id="copyright-year">2025</span> NexoWeb · Pedro Silva</p>
+                <div style="margin-top: 16px; display: flex; gap: 32px;">
+                    <a href="#" style="font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase;">GitHub</a>
+                    <a href="#" style="font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase;">LinkedIn</a>
+                    <a href="https://wa.me/56997236064?text=Hola%20Pedro%2C%20estuve%20viendo%20tu%20portafolio%20y%20me%20interesa%20tu%20perfil%20h%C3%ADbrido%20(Tech%2BCX).%20Me%20gustar%C3%ADa%20conversar%20contigo." target="_blank" rel="noopener noreferrer" style="font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase;">WhatsApp</a>
+                </div>
+            </div>
+            <div style="text-align: right;">
+                <p style="font-family: var(--font-headline); font-size: 4rem; font-weight: 900; color: var(--color-tertiary); text-transform: uppercase; line-height: 1;">Trabajemos<br>Juntos</p>
+                <p style="font-family: var(--font-headline); font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--color-primary); margin-top: 16px;">Santiago, Chile · Remoto / Híbrido</p>
+            </div>
+        </footer>
+    </main>
+
+    <!-- WhatsApp FAB -->
+    <div style="position: fixed; bottom: 48px; right: 48px; z-index: 50;">
+        <a href="https://wa.me/56997236064?text=Hola%20Pedro%2C%20estuve%20viendo%20tu%20portafolio%20y%20me%20interesa%20tu%20perfil%20h%C3%ADbrido%20(Tech%2BCX).%20Me%20gustar%C3%ADa%20conversar%20contigo." target="_blank" rel="noopener noreferrer" title="Escríbeme por WhatsApp" style="width: 64px; height: 64px; background: var(--color-tertiary-fixed); color: #516700; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 20px 40px rgba(202,253,0,0.15); text-decoration: none; transition: transform 0.2s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+            <span class="material-symbols-outlined" style="font-size: 32px; font-variation-settings: 'FILL' 1;">chat_bubble</span>
+        </a>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script>
+        // ── Topbar scroll backdrop ───────────────────────────────────────────
+        (function () {
+            const topbar = document.getElementById('topbar');
+            window.addEventListener('scroll', () => {
+                topbar.classList.toggle('scrolled', window.scrollY > 200);
+            }, { passive: true });
+        })();
+
+        // ── Filtrado de proyectos ────────────────────────────────────────────
+        (function () {
+            const filterBtns    = document.querySelectorAll('[data-filter]');
+            const projectCards  = document.querySelectorAll('[data-cat]');
+            const sectionPO     = document.getElementById('section-po');
+            const sectionDev    = document.getElementById('section-dev');
+
+            function applyFilter(cat) {
+                projectCards.forEach(card => {
+                    const match = (cat === 'all') || (card.dataset.cat === cat);
+                    card.classList.toggle('hidden-by-filter', !match);
+                });
+
+                // Mostrar/ocultar separador PO
+                if (cat === 'po') {
+                    if (sectionDev) sectionDev.style.display = 'none';
+                    if (sectionPO) sectionPO.style.display = '';
+                } else if (cat === 'dev') {
+                    if (sectionPO) sectionPO.style.display = 'none';
+                    if (sectionDev) sectionDev.style.display = '';
+                } else {
+                    if (sectionPO) sectionPO.style.display = '';
+                    if (sectionDev) sectionDev.style.display = '';
+                }
+            }
+
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', function () {
+                    filterBtns.forEach(b => b.classList.remove('active', 'is-active'));
+                    this.classList.add('active', 'is-active');
+                    applyFilter(this.dataset.filter);
+                });
+            });
+        })();
+
+        // ── Scroll-effect & Scroll-spy ─────────────────────────────────────────
+        (function () {
+            const topbar  = document.getElementById('topbar');
+            const navLinks = document.querySelectorAll('.topbar-nav-link');
+            const sections = ['section-dev', 'section-po'].map(id => document.getElementById(id));
+            const heroHeight = 100;
+
+            function getActiveSection() {
+                const mid = window.scrollY + window.innerHeight * 0.4;
+                let active = null;
+                sections.forEach(sec => {
+                    if (!sec) return;
+                    if (sec.offsetTop <= mid) active = sec.id;
+                });
+                return active;
+            }
+
+            function updateNav() {
+                if (window.scrollY > heroHeight) {
+                    topbar.classList.add('scrolled');
+                } else {
+                    topbar.classList.remove('scrolled');
+                }
+
+                const activeId = getActiveSection();
+                navLinks.forEach(link => {
+                    const target = link.getAttribute('href').replace('#', '');
+                    link.classList.toggle('is-active', target === activeId);
+                });
+            }
+
+            window.addEventListener('scroll', updateNav, { passive: true });
+            updateNav();
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').replace('#', '');
+                    const target   = document.getElementById(targetId);
+                    if (!target) return;
+                    const topbarH  = topbar.offsetHeight;
+                    const targetY  = target.getBoundingClientRect().top + window.scrollY - topbarH - 32;
+                    window.scrollTo({ top: targetY, behavior: 'smooth' });
+                });
+            });
+        })();
+    </script>
+</body>
+</html>
