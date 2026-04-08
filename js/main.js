@@ -92,6 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Clear error on re-entry
             input.addEventListener('input', () => {
                 input.parentElement.classList.remove('invalid');
+                input.setAttribute('aria-invalid', 'false');
             });
         });
 
@@ -108,8 +109,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (!isValid) {
                 field.parentElement.classList.add('invalid');
+                field.setAttribute('aria-invalid', 'true');
             } else {
                 field.parentElement.classList.remove('invalid');
+                field.setAttribute('aria-invalid', 'false');
             }
             return isValid;
         }
@@ -120,13 +123,19 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // Final Validation Check
             let formIsValid = true;
+            let firstInvalidInput = null;
+
             inputs.forEach(input => {
-                if (!validateField(input)) formIsValid = false;
+                if (!validateField(input)) {
+                    formIsValid = false;
+                    if (!firstInvalidInput) firstInvalidInput = input;
+                }
             });
 
             if (!formIsValid) {
-                statusMsg.textContent = 'Por favor completa todos los campos correctamente.';
+                statusMsg.textContent = 'Por favor revisa los campos en rojo y corrige los errores.';
                 statusMsg.className = 'form-status-msg status-error';
+                if (firstInvalidInput) firstInvalidInput.focus();
                 return;
             }
 

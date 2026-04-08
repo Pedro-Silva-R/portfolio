@@ -874,32 +874,34 @@
     </style>
 </head>
 <body>
+    <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+
     <!-- Side Navigation Bar -->
-    <nav class="sidenav">
+    <nav class="sidenav" aria-label="Navegación lateral">
         <div>
             <div class="sidenav-logo">PS</div>
             <div class="sidenav-links">
                 <a href="index.html" class="sidenav-link">
-                    <span class="material-symbols-outlined">person</span>
+                    <span class="material-symbols-outlined" aria-hidden="true">person</span>
                     <small>Inicio</small>
                 </a>
-                <a href="about.html" class="sidenav-link active">
-                    <span class="material-symbols-outlined">history_edu</span>
+                <a href="about.html" class="sidenav-link active" aria-current="page">
+                    <span class="material-symbols-outlined" aria-hidden="true">history_edu</span>
                     <small>Sobre Mí</small>
                 </a>
                 <a href="proyectos.html" class="sidenav-link">
-                    <span class="material-symbols-outlined">grid_view</span>
+                    <span class="material-symbols-outlined" aria-hidden="true">grid_view</span>
                     <small>Proyectos</small>
                 </a>
             </div>
         </div>
         <div style="display: flex; flex-direction: column; align-items: center; gap: 24px;">
             <a href="experience.html" class="sidenav-link">
-                <span class="material-symbols-outlined">folder_open</span>
+                <span class="material-symbols-outlined" aria-hidden="true">folder_open</span>
                 <small>Experiencia</small>
             </a>
             <div style="width: 40px; height: 40px; border: 1px solid var(--color-outline-variant); overflow: hidden;">
-                <img src="img/pedro2.png" alt="Profile" style="width: 100%; height: 100%; object-fit: cover;">
+                <img src="img/pedro2.webp" alt="Foto de perfil de Pedro Silva" style="width: 100%; height: 100%; object-fit: cover;">
             </div>
         </div>
     </nav>
@@ -913,44 +915,46 @@
             <a href="#formacion" class="topbar-nav-link">Formación</a>
         </nav>
         <div class="topbar-actions">
-            <span class="material-symbols-outlined theme-toggle" style="cursor: pointer;">dark_mode</span>
-            <button class="btn-connect" onclick="window.location.href='experience.html#contacto'">Contactar</button>
-            <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú">
-                <span class="material-symbols-outlined">menu</span>
+            <button class="theme-toggle" aria-label="Cambiar tema de color" style="background: none; border: none; color: inherit; padding: 0; cursor: pointer;">
+                <span class="material-symbols-outlined" style="display: block;">dark_mode</span>
+            </button>
+            <a href="experience.html#contacto" class="btn-connect">Contactar</a>
+            <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú móvil">
+                <span class="material-symbols-outlined" aria-hidden="true">menu</span>
             </button>
         </div>
     </header>
 
     <!-- Mobile Navigation Drawer -->
     <div class="mobile-nav-overlay" id="mobile-nav-overlay"></div>
-    <nav class="mobile-nav-drawer" id="mobile-nav-drawer">
+    <nav class="mobile-nav-drawer" id="mobile-nav-drawer" aria-label="Navegación móvil">
         <div class="mobile-nav-header">
             <div class="sidenav-logo">PS</div>
-            <button class="menu-close" id="menu-close" aria-label="Cerrar menú">
-                <span class="material-symbols-outlined">close</span>
+            <button class="menu-close" id="menu-close" aria-label="Cerrar menú móvil">
+                <span class="material-symbols-outlined" aria-hidden="true">close</span>
             </button>
         </div>
         <div class="mobile-nav-links">
             <a href="index.html" class="mobile-nav-link">Inicio</a>
-            <a href="about.html" class="mobile-nav-link active">Sobre Mí</a>
+            <a href="about.html" class="mobile-nav-link active" aria-current="page">Sobre Mí</a>
             <a href="proyectos.html" class="mobile-nav-link">Proyectos</a>
             <a href="experience.html" class="mobile-nav-link">Experiencia</a>
         </div>
     </nav>
 
     <!-- Main Content Area -->
-    <main style="padding-top: 128px; padding-left: 112px;">
+    <main id="main-content" style="padding-top: 128px; padding-left: 112px;">
 
         <!-- ═══════════════════════════════════════════════════
              SECCIÓN 1: HERO / BIO
         ════════════════════════════════════════════════════ -->
-        <section class="about-hero" style="padding-bottom: 96px;">
-            <div class="hero-bg-word">SOBRE</div>
+        <section class="about-hero" style="padding-bottom: 96px;" aria-labelledby="hero-heading">
+            <div class="hero-bg-word" aria-hidden="true">PRODUCT</div>
 
             <div class="hero-grid">
                 <!-- Columna izquierda: Headline + badges -->
                 <div style="position: relative; z-index: 10;">
-                    <h1 class="hero-headline">
+                    <h1 class="hero-headline" id="hero-heading">
                         El <span style="color: var(--color-primary); font-style: italic;">Puente</span><br>
                         <span class="text-outline">Digital</span>
                     </h1>
@@ -962,7 +966,7 @@
 
                     <!-- Badge accesibilidad -->
                     <div style="display: inline-flex; align-items: center; gap: 12px; background: var(--color-surface-low); padding: 12px 20px; border: 1px solid var(--color-outline-variant);">
-                        <span class="material-symbols-outlined" style="font-size: 18px; color: var(--color-primary);">accessible</span>
+                        <span class="material-symbols-outlined" style="font-size: 18px; color: var(--color-primary);" aria-hidden="true">accessible</span>
                         <span style="font-family: var(--font-headline); font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.2em; color: var(--color-on-surface-variant);">
                             Inscrito · Registro Nacional de Discapacidad (Ley 21.015)
                         </span>
@@ -1008,7 +1012,7 @@
                 <!-- Tarjeta 1: Producto & Agilidad -->
                 <div class="valor-card">
                     <span class="valor-num">01</span>
-                    <span class="material-symbols-outlined valor-icon" style="color: var(--color-primary);">tactic</span>
+                    <span class="material-symbols-outlined valor-icon" style="color: var(--color-primary);" aria-hidden="true">tactic</span>
                     <h3>Visión de Producto & Agilidad</h3>
                     <p>
                         Traduzco requerimientos complejos en historias de usuario claras.
@@ -1025,7 +1029,7 @@
                 <!-- Tarjeta 2: UX/UI -->
                 <div class="valor-card">
                     <span class="valor-num">02</span>
-                    <span class="material-symbols-outlined valor-icon" style="color: var(--color-secondary);">terminal</span>
+                    <span class="material-symbols-outlined valor-icon" style="color: var(--color-secondary);" aria-hidden="true">terminal</span>
                     <h3>Desarrollo Centrado en UX/UI</h3>
                     <p>
                         Construyo interfaces web <strong style="color: white;">responsive</strong> priorizando la
@@ -1042,7 +1046,7 @@
                 <!-- Tarjeta 3: CX & QA -->
                 <div class="valor-card">
                     <span class="valor-num">03</span>
-                    <span class="material-symbols-outlined valor-icon" style="color: var(--color-tertiary-fixed);">handshake</span>
+                    <span class="material-symbols-outlined valor-icon" style="color: var(--color-tertiary-fixed);" aria-hidden="true">handshake</span>
                     <h3>Customer Success & QA</h3>
                     <p>
                         <strong style="color: white;">+5 años</strong> gestionando clientes B2B/B2C, testeando
@@ -1072,11 +1076,11 @@
                         hago realidad cada proyecto — desde el <strong>primer commit</strong>
                         hasta el <strong>lanzamiento con el usuario</strong>.
                     </p>
-                    <span class="material-symbols-outlined transition-arrow" style="color: var(--color-tertiary); font-size: 32px; animation: bounce 2s infinite;">south</span>
+                    <span class="material-symbols-outlined transition-arrow" style="color: var(--color-tertiary); font-size: 32px; animation: bounce 2s infinite;" aria-hidden="true">south</span>
                 </div>
             </div>
 
-            <div class="skill-matrix-bg">STACK</div>
+            <div class="skill-matrix-bg" aria-hidden="true">MATRIX</div>
 
             <div class="skill-matrix-header">
                 <h2>Mi Stack &<br>Herramientas</h2>
@@ -1174,11 +1178,11 @@
             <!-- CTAs -->
             <div class="skill-ctas">
                 <a href="proyectos.html" class="btn-skill-cta">
-                    <span class="material-symbols-outlined" style="font-size: 16px; vertical-align: middle; margin-right: 8px;">terminal</span>
+                    <span class="material-symbols-outlined" style="font-size: 16px; vertical-align: middle; margin-right: 8px;" aria-hidden="true">terminal</span>
                     Ver mis Proyectos
                 </a>
                 <a href="experience.html" class="btn-skill-cta btn-skill-cta-outline">
-                    <span class="material-symbols-outlined" style="font-size: 16px; vertical-align: middle; margin-right: 8px;">folder_open</span>
+                    <span class="material-symbols-outlined" style="font-size: 16px; vertical-align: middle; margin-right: 8px;" aria-hidden="true">folder_open</span>
                     Ver mi Experiencia
                 </a>
             </div>
@@ -1207,7 +1211,7 @@
                     <div class="archive-item-right">
                         <p class="archive-desc">Prompting avanzado, automatización de procesos y ciclos de proyecto con IA.</p>
                         <span class="archive-badge badge-completado">Completado</span>
-                        <span class="material-symbols-outlined archive-arrow">arrow_forward</span>
+                        <span class="material-symbols-outlined archive-arrow" aria-hidden="true">arrow_forward</span>
                     </div>
                 </div>
 
@@ -1223,7 +1227,7 @@
                     <div class="archive-item-right">
                         <p class="archive-desc">Roadmapping, historias de usuario, priorización WSJF y gestión de backlog.</p>
                         <span class="archive-badge badge-completado">Completado</span>
-                        <span class="material-symbols-outlined archive-arrow">arrow_forward</span>
+                        <span class="material-symbols-outlined archive-arrow" aria-hidden="true">arrow_forward</span>
                     </div>
                 </div>
 
@@ -1239,7 +1243,7 @@
                     <div class="archive-item-right">
                         <p class="archive-desc">Desarrollo end-to-end con Vue.js 3, Firebase, control de versiones y accesibilidad.</p>
                         <span class="archive-badge badge-completado">Completado</span>
-                        <span class="material-symbols-outlined archive-arrow">arrow_forward</span>
+                        <span class="material-symbols-outlined archive-arrow" aria-hidden="true">arrow_forward</span>
                     </div>
                 </div>
 
@@ -1255,7 +1259,7 @@
                     <div class="archive-item-right">
                         <p class="archive-desc">SEO, estrategia digital, analítica y optimización de conversión.</p>
                         <span class="archive-badge badge-cursando">En curso</span>
-                        <span class="material-symbols-outlined archive-arrow">arrow_forward</span>
+                        <span class="material-symbols-outlined archive-arrow" aria-hidden="true">arrow_forward</span>
                     </div>
                 </div>
 
@@ -1271,7 +1275,7 @@
                     <div class="archive-item-right">
                         <p class="archive-desc">Comprensión técnica en inglés y principios de diseño visual centrado en el usuario.</p>
                         <span class="archive-badge badge-activo">Activo</span>
-                        <span class="material-symbols-outlined archive-arrow">arrow_forward</span>
+                        <span class="material-symbols-outlined archive-arrow" aria-hidden="true">arrow_forward</span>
                     </div>
                 </div>
 
@@ -1280,10 +1284,12 @@
 
         <!-- Footer Area -->
         <footer>
-            <div class="footer-bg-text">PORTAFOLIO</div>
+            <div class="footer-bg-text" aria-hidden="true">PORTAFOLIO</div>
             <div style="position: relative; z-index: 10;">
-                <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px;">
-                    <span style="background: var(--color-primary); color: #0600a5; width: 32px; height: 32px; display: inline-flex; align-items: center; justify-content: center; font-family: var(--font-headline); font-size: 11px; font-weight: 900; flex-shrink: 0;">NW</span>
+                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 20px;">
+                    <span style="width: 32px; height: 32px; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; overflow: hidden; border-radius: 4px;">
+                        <img src="img/logo_nexo.webp" alt="" aria-hidden="true" style="width: 100%; height: 100%; object-fit: contain;">
+                    </span>
                     <span style="font-family: var(--font-headline); font-size: 1rem; font-weight: 900; color: var(--color-primary); text-transform: uppercase; letter-spacing: 0.05em;">NexoWeb</span>
                 </div>
                 <p style="font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--color-on-surface-variant);">©<span id="copyright-year">2025</span> NexoWeb · Pedro Silva</p>
@@ -1302,8 +1308,8 @@
 
     <!-- WhatsApp FAB -->
     <div style="position: fixed; bottom: 48px; right: 48px; z-index: 50;">
-        <a href="https://wa.me/56997236064?text=Hola%20Pedro%2C%20estuve%20viendo%20tu%20portafolio%20y%20me%20interesa%20tu%20perfil%20h%C3%ADbrido%20(Tech%2BCX).%20Me%20gustar%C3%ADa%20conversar%20contigo." target="_blank" rel="noopener noreferrer" title="Escríbeme por WhatsApp" style="width: 64px; height: 64px; background: var(--color-tertiary-fixed); color: #516700; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 20px 40px rgba(202,253,0,0.15); text-decoration: none; transition: transform 0.2s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
-            <span class="material-symbols-outlined" style="font-size: 32px; font-variation-settings: 'FILL' 1;">chat_bubble</span>
+        <a href="https://wa.me/56997236064?text=Hola%20Pedro%2C%20estuve%20viendo%20tu%20portafolio%20y%20me%20interesa%20tu%20perfil%20h%C3%ADbrido%20(Tech%2BCX).%20Me%20gustar%C3%ADa%20conversar%20contigo." target="_blank" rel="noopener noreferrer" aria-label="Enviar mensaje por WhatsApp" style="width: 64px; height: 64px; background: var(--color-tertiary-fixed); color: #2b3a00; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 20px 40px rgba(202,253,0,0.15); text-decoration: none; transition: transform 0.2s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+            <span class="material-symbols-outlined" style="font-size: 32px; font-variation-settings: 'FILL' 1;" aria-hidden="true">chat_bubble</span>
         </a>
     </div>
 

@@ -246,32 +246,34 @@
     </style>
 </head>
 <body>
+    <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+
     <!-- Side Navigation Bar -->
-    <nav class="sidenav">
+    <nav class="sidenav" aria-label="Navegación lateral">
         <div>
             <div class="sidenav-logo">PS</div>
             <div class="sidenav-links">
                 <a href="index.html" class="sidenav-link">
-                    <span class="material-symbols-outlined">person</span>
+                    <span class="material-symbols-outlined" aria-hidden="true">person</span>
                     <small>Inicio</small>
                 </a>
                 <a href="about.html" class="sidenav-link">
-                    <span class="material-symbols-outlined">history_edu</span>
+                    <span class="material-symbols-outlined" aria-hidden="true">history_edu</span>
                     <small>Sobre Mí</small>
                 </a>
                 <a href="proyectos.html" class="sidenav-link">
-                    <span class="material-symbols-outlined">grid_view</span>
+                    <span class="material-symbols-outlined" aria-hidden="true">grid_view</span>
                     <small>Proyectos</small>
                 </a>
             </div>
         </div>
         <div style="display: flex; flex-direction: column; align-items: center; gap: 24px;">
-            <a href="experience.html" class="sidenav-link active">
-                <span class="material-symbols-outlined">folder_open</span>
+            <a href="experience.html" class="sidenav-link active" aria-current="page">
+                <span class="material-symbols-outlined" aria-hidden="true">folder_open</span>
                 <small>Experiencia</small>
             </a>
             <div style="width: 40px; height: 40px; border: 1px solid var(--color-outline-variant); overflow: hidden;">
-                <img src="img/pedro4.png" alt="Profile" style="width: 100%; height: 100%; object-fit: cover;">
+                <img src="img/pedro4.webp" alt="Foto de perfil de Pedro Silva" style="width: 100%; height: 100%; object-fit: cover;">
             </div>
         </div>
     </nav>
@@ -284,43 +286,45 @@
             <a href="#contacto" class="topbar-nav-link">Contacto</a>
         </nav>
         <div class="topbar-actions">
-            <span class="material-symbols-outlined theme-toggle" style="cursor: pointer;">dark_mode</span>
-            <button class="btn-connect" onclick="window.location.href='experience.html#contacto'">Contactar</button>
-            <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú">
-                <span class="material-symbols-outlined">menu</span>
+            <button class="theme-toggle" aria-label="Cambiar tema de color" style="background: none; border: none; color: inherit; padding: 0; cursor: pointer;">
+                <span class="material-symbols-outlined" style="display: block;">dark_mode</span>
+            </button>
+            <a href="experience.html#contacto" class="btn-connect">Contactar</a>
+            <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú móvil">
+                <span class="material-symbols-outlined" aria-hidden="true">menu</span>
             </button>
         </div>
     </header>
 
     <!-- Mobile Navigation Drawer -->
     <div class="mobile-nav-overlay" id="mobile-nav-overlay"></div>
-    <nav class="mobile-nav-drawer" id="mobile-nav-drawer">
+    <nav class="mobile-nav-drawer" id="mobile-nav-drawer" aria-label="Navegación móvil">
         <div class="mobile-nav-header">
             <div class="sidenav-logo">PS</div>
-            <button class="menu-close" id="menu-close" aria-label="Cerrar menú">
-                <span class="material-symbols-outlined">close</span>
+            <button class="menu-close" id="menu-close" aria-label="Cerrar menú móvil">
+                <span class="material-symbols-outlined" aria-hidden="true">close</span>
             </button>
         </div>
         <div class="mobile-nav-links">
             <a href="index.html" class="mobile-nav-link">Inicio</a>
             <a href="about.html" class="mobile-nav-link">Sobre Mí</a>
             <a href="proyectos.html" class="mobile-nav-link">Proyectos</a>
-            <a href="experience.html" class="mobile-nav-link active">Experiencia</a>
+            <a href="experience.html" class="mobile-nav-link active" aria-current="page">Experiencia</a>
         </div>
     </nav>
 
-    <main style="padding-top: 128px; padding-left: 96px;">
+    <main id="main-content" style="padding-top: 128px; padding-left: 96px;">
         <!-- Hero Section -->
-        <section class="experience-hero">
-            <div style="position: absolute; top: -80px; right: -80px; width: 384px; height: 384px; background: rgba(161, 166, 255, 0.1); filter: blur(120px); border-radius: 50%;"></div>
-            <h1 class="font-headline" style="font-size: 8rem; font-weight: 900; line-height: 0.85; text-transform: uppercase; letter-spacing: -0.05em; margin-bottom: 32px;">
+        <section class="experience-hero" aria-labelledby="hero-heading">
+            <div aria-hidden="true" style="position: absolute; top: -80px; right: -80px; width: 384px; height: 384px; background: rgba(161, 166, 255, 0.1); filter: blur(120px); border-radius: 50%;"></div>
+            <h1 class="font-headline" id="hero-heading" style="font-size: 8rem; font-weight: 900; line-height: 0.85; text-transform: uppercase; letter-spacing: -0.05em; margin-bottom: 32px;">
                 HISTORIAL<br><span class="text-stroke">LABORAL</span>
             </h1>
             <p style="font-size: 1.5rem; color: var(--color-on-surface-variant); max-width: 640px; line-height: 1.6; margin-bottom: 40px;">
                 De soporte técnico B2B a gestión de productos digitales. Un camino construido sobre la comprensión profunda del usuario y la entrega de valor real.
             </p>
-            <a href="assets/Pedro_Silva_R-CV.pdf" download style="font-family: var(--font-headline); font-weight: 900; letter-spacing: 0.15em; text-transform: uppercase; color: white; border: 1px solid var(--color-outline-variant); padding: 12px 24px; display: inline-flex; align-items: center; gap: 12px; text-decoration: none; transition: background 0.2s ease, border-color 0.2s ease; cursor: pointer;" onmouseover="this.style.background='rgba(255,255,255,0.05)'; this.style.borderColor='var(--color-primary)'" onmouseout="this.style.background='transparent'; this.style.borderColor='var(--color-outline-variant)'">
-                <span class="material-symbols-outlined" style="font-size: 18px;">download</span>
+            <a href="assets/Pedro_Silva_R-CV.pdf" download aria-label="Descargar mi Curriculum Vitae en formato PDF" style="font-family: var(--font-headline); font-weight: 900; letter-spacing: 0.15em; text-transform: uppercase; color: white; border: 1px solid var(--color-outline-variant); padding: 12px 24px; display: inline-flex; align-items: center; gap: 12px; text-decoration: none; transition: background 0.2s ease, border-color 0.2s ease; cursor: pointer;" onmouseover="this.style.background='rgba(255,255,255,0.05)'; this.style.borderColor='var(--color-primary)'" onmouseout="this.style.background='transparent'; this.style.borderColor='var(--color-outline-variant)'">
+                <span class="material-symbols-outlined" style="font-size: 18px;" aria-hidden="true">download</span>
                 Descargar CV
             </a>
         </section>
@@ -336,7 +340,7 @@
             <div class="timeline-container">
                 <!-- Item 01: Proyectos Independientes -->
                 <div class="timeline-item">
-                    <span class="timeline-number">01</span>
+                    <span class="timeline-number" aria-hidden="true">01</span>
                     <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 24px;">
                         <h3 class="font-headline" style="font-size: 2rem; font-weight: 700; color: var(--color-primary);">Dev Frontend & PM Trainee</h3>
                         <span style="font-family: var(--font-headline); font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.2em; background: rgba(161, 166, 255, 0.1); color: var(--color-primary); padding: 4px 12px;">2024 — PRESENTE</span>
@@ -355,7 +359,7 @@
 
                 <!-- Item 02: SumUp -->
                 <div class="timeline-item" style="border-left-color: var(--color-secondary);">
-                    <span class="timeline-number">02</span>
+                    <span class="timeline-number" aria-hidden="true">02</span>
                     <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 24px;">
                         <h3 class="font-headline" style="font-size: 2rem; font-weight: 700; color: var(--color-secondary);">Especialista Soporte Técnico</h3>
                         <span style="font-family: var(--font-headline); font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.2em; color: var(--color-on-surface-variant); padding: 4px 12px;">2021 — 2022</span>
@@ -373,7 +377,7 @@
 
                 <!-- Item 03: Fundación Tacal -->
                 <div class="timeline-item" style="border-left-color: var(--color-tertiary-fixed);">
-                    <span class="timeline-number">03</span>
+                    <span class="timeline-number" aria-hidden="true">03</span>
                     <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 24px;">
                         <h3 class="font-headline" style="font-size: 2rem; font-weight: 700; color: var(--color-tertiary-fixed);">QA & UX Tester</h3>
                         <span style="font-family: var(--font-headline); font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.2em; color: var(--color-on-surface-variant); padding: 4px 12px;">2020 — 2021</span>
@@ -391,7 +395,7 @@
 
                 <!-- Item 04: Cesmec & Entel -->
                 <div class="timeline-item" style="border-left-color: var(--color-primary-container);">
-                    <span class="timeline-number">04</span>
+                    <span class="timeline-number" aria-hidden="true">04</span>
                     <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 24px;">
                         <h3 class="font-headline" style="font-size: 2rem; font-weight: 700; color: var(--color-primary-container);">Soporte Técnico & Atención al Cliente</h3>
                         <span style="font-family: var(--font-headline); font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.2em; color: var(--color-on-surface-variant); padding: 4px 12px;">2018 — 2020</span>
@@ -424,33 +428,33 @@
                     <div style="display: flex; flex-direction: column; gap: 32px;">
                         <form id="contact-form" class="disruptive-form">
                             <!-- Success/Error Area -->
-                            <div id="form-status" class="form-status-msg"></div>
+                            <div id="form-status" class="form-status-msg" role="status" aria-live="polite" tabindex="-1"></div>
 
                             <div class="form-group">
                                 <label for="user_name">Tu Nombre</label>
-                                <input type="text" id="user_name" name="user_name" placeholder="Ej: María Pérez" required minlength="3">
-                                <span class="field-error">El nombre debe tener al menos 3 caracteres.</span>
+                                <input type="text" id="user_name" name="user_name" placeholder="Ej: María Pérez" required minlength="3" aria-required="true" aria-describedby="name-error">
+                                <span id="name-error" class="field-error">El nombre debe tener al menos 3 caracteres.</span>
                             </div>
 
                             <div class="form-group">
                                 <label for="user_email">Tu Email</label>
-                                <input type="email" id="user_email" name="user_email" placeholder="tu@email.com" required>
-                                <span class="field-error">Formato de email inválido.</span>
+                                <input type="email" id="user_email" name="user_email" placeholder="tu@email.com" required aria-required="true" aria-describedby="email-error">
+                                <span id="email-error" class="field-error">Formato de email inválido.</span>
                             </div>
 
                             <div class="form-group">
                                 <label for="subject">Asunto</label>
-                                <input type="text" id="subject" name="subject" placeholder="Ej: Te queremos contratar" required>
-                                <span class="field-error">El asunto es obligatorio.</span>
+                                <input type="text" id="subject" name="subject" placeholder="Ej: Te queremos contratar" required aria-required="true" aria-describedby="subject-error">
+                                <span id="subject-error" class="field-error">El asunto es obligatorio.</span>
                             </div>
 
                             <div class="form-group">
                                 <label for="message">Tu Mensaje</label>
-                                <textarea id="message" name="message" placeholder="Cuéntame sobre tu proyecto o propuesta..." required maxlength="1000"></textarea>
-                                <div class="char-counter">
+                                <textarea id="message" name="message" placeholder="Cuéntame sobre tu proyecto o propuesta..." required maxlength="1000" aria-required="true" aria-describedby="message-error"></textarea>
+                                <div class="char-counter" aria-hidden="true">
                                     <span id="char-current">0</span>/1000
                                 </div>
-                                <span class="field-error">El mensaje no puede estar vacío.</span>
+                                <span id="message-error" class="field-error">El mensaje no puede estar vacío.</span>
                             </div>
 
                             <button type="submit" id="submit-btn" class="btn-identity" style="width: 100%; margin-top: 16px;">
@@ -461,7 +465,7 @@
 
                     <div style="display: flex; flex-direction: column; gap: 32px; align-items: flex-end;">
                         <p style="font-family: var(--font-headline); font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--color-on-surface-variant);">Contáctame en</p>
-                        <a href="https://wa.me/56997236064?text=Hola%20Pedro%2C%20estuve%20viendo%20tu%20portafolio%20y%20me%20interesa%20tu%20perfil%20h%C3%ADbrido%20(Tech%2BCX).%20Me%20gustar%C3%ADa%20conversar%20contigo." target="_blank" rel="noopener noreferrer" class="social-link-stroke">WHATSAPP</a>
+                        <a href="https://wa.me/56997236064?text=Hola%20Pedro%2C%20estuve%20viendo%20tu%20portafolio%20y%20me%20interesa%20tu%20perfil%20h%C3%ADbrido%20(Tech%2BCX).%20Me%20gustar%C3%ADa%20conversar%20contigo." target="_blank" rel="noopener noreferrer" class="social-link-stroke" aria-label="WhatsApp de Pedro Silva">WHATSAPP</a>
                         <a href="#" target="_blank" rel="noopener noreferrer" class="social-link-stroke">LINKEDIN</a>
                         <a href="#" target="_blank" rel="noopener noreferrer" class="social-link-stroke">GITHUB</a>
                         <a href="#" target="_blank" rel="noopener noreferrer" class="social-link-stroke">INSTAGRAM</a>
@@ -472,10 +476,12 @@
 
         <!-- Footer Area -->
         <footer>
-            <div class="footer-bg-text">PORTAFOLIO</div>
+            <div class="footer-bg-text" aria-hidden="true">PORTAFOLIO</div>
             <div style="position: relative; z-index: 10;">
-                <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px;">
-                    <span style="background: var(--color-primary); color: #0600a5; width: 32px; height: 32px; display: inline-flex; align-items: center; justify-content: center; font-family: var(--font-headline); font-size: 11px; font-weight: 900; flex-shrink: 0;">NW</span>
+                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 20px;">
+                    <span style="width: 32px; height: 32px; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; overflow: hidden; border-radius: 4px;">
+                        <img src="img/logo_nexo.webp" alt="" aria-hidden="true" style="width: 100%; height: 100%; object-fit: contain;">
+                    </span>
                     <span style="font-family: var(--font-headline); font-size: 1rem; font-weight: 900; color: var(--color-primary); text-transform: uppercase; letter-spacing: 0.05em;">NexoWeb</span>
                 </div>
                 <p style="font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--color-on-surface-variant);">©<span id="copyright-year">2025</span> NexoWeb · Pedro Silva</p>

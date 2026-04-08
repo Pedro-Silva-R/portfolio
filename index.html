@@ -17,32 +17,34 @@
     </style>
 </head>
 <body>
+    <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+
     <!-- Side Navigation Bar -->
-    <nav class="sidenav">
+    <nav class="sidenav" aria-label="Navegación lateral">
         <div>
             <div class="sidenav-logo">PS</div>
             <div class="sidenav-links">
-                <a href="index.html" class="sidenav-link active">
-                    <span class="material-symbols-outlined">person</span>
+                <a href="index.html" class="sidenav-link active" aria-current="page">
+                    <span class="material-symbols-outlined" aria-hidden="true">person</span>
                     <small>Inicio</small>
                 </a>
                 <a href="about.html" class="sidenav-link">
-                    <span class="material-symbols-outlined">history_edu</span>
+                    <span class="material-symbols-outlined" aria-hidden="true">history_edu</span>
                     <small>Sobre Mí</small>
                 </a>
                 <a href="proyectos.html" class="sidenav-link">
-                    <span class="material-symbols-outlined">grid_view</span>
+                    <span class="material-symbols-outlined" aria-hidden="true">grid_view</span>
                     <small>Proyectos</small>
                 </a>
             </div>
         </div>
         <div style="display: flex; flex-direction: column; align-items: center; gap: 24px;">
             <a href="experience.html" class="sidenav-link">
-                <span class="material-symbols-outlined">folder_open</span>
+                <span class="material-symbols-outlined" aria-hidden="true">folder_open</span>
                 <small>Experiencia</small>
             </a>
             <div style="width: 40px; height: 40px; border: 1px solid var(--color-outline-variant); overflow: hidden;">
-                <img src="img/pedro1.png" alt="Profile" style="width: 100%; height: 100%; object-fit: cover;">
+                <img src="img/pedro1.webp" alt="Foto de perfil de Pedro Silva" style="width: 100%; height: 100%; object-fit: cover;">
             </div>
         </div>
     </nav>
@@ -50,31 +52,33 @@
     <!-- Top App Bar -->
     <header class="topbar" id="topbar">
         <div class="topbar-title">PORTAFOLIO_PS</div>
-        <nav class="desktop-nav">
-            <a href="proyectos.html" style="font-family: var(--font-headline); font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 0.15em; color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.3s ease;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.5)'">Proyectos</a>
-            <a href="about.html" style="font-family: var(--font-headline); font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 0.15em; color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.3s ease;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.5)'">Sobre Mí</a>
-            <a href="experience.html" style="font-family: var(--font-headline); font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 0.15em; color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.3s ease;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.5)'">Experiencia</a>
+        <nav class="desktop-nav" aria-label="Navegación principal">
+            <a href="proyectos.html" style="font-family: var(--font-headline); font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 0.15em; color: var(--color-on-surface-variant); text-decoration: none; transition: color 0.3s ease;" onmouseover="this.style.color='white'" onmouseout="this.style.color='var(--color-on-surface-variant)'">Proyectos</a>
+            <a href="about.html" style="font-family: var(--font-headline); font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 0.15em; color: var(--color-on-surface-variant); text-decoration: none; transition: color 0.3s ease;" onmouseover="this.style.color='white'" onmouseout="this.style.color='var(--color-on-surface-variant)'">Sobre Mí</a>
+            <a href="experience.html" style="font-family: var(--font-headline); font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 0.15em; color: var(--color-on-surface-variant); text-decoration: none; transition: color 0.3s ease;" onmouseover="this.style.color='white'" onmouseout="this.style.color='var(--color-on-surface-variant)'">Experiencia</a>
         </nav>
         <div class="topbar-actions">
-            <span class="material-symbols-outlined theme-toggle" style="cursor: pointer;">dark_mode</span>
-            <button class="btn-connect" onclick="window.location.href='experience.html#contacto'">Contactar</button>
-            <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú">
-                <span class="material-symbols-outlined">menu</span>
+            <button class="theme-toggle" aria-label="Cambiar tema de color" style="background: none; border: none; color: inherit; padding: 0; cursor: pointer;">
+                <span class="material-symbols-outlined" style="display: block;">dark_mode</span>
+            </button>
+            <a href="experience.html#contacto" class="btn-connect">Contactar</a>
+            <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú móvil">
+                <span class="material-symbols-outlined" aria-hidden="true">menu</span>
             </button>
         </div>
     </header>
 
     <!-- Mobile Navigation Drawer -->
     <div class="mobile-nav-overlay" id="mobile-nav-overlay"></div>
-    <nav class="mobile-nav-drawer" id="mobile-nav-drawer">
+    <nav class="mobile-nav-drawer" id="mobile-nav-drawer" aria-label="Navegación móvil">
         <div class="mobile-nav-header">
             <div class="sidenav-logo">PS</div>
-            <button class="menu-close" id="menu-close" aria-label="Cerrar menú">
-                <span class="material-symbols-outlined">close</span>
+            <button class="menu-close" id="menu-close" aria-label="Cerrar menú móvil">
+                <span class="material-symbols-outlined" aria-hidden="true">close</span>
             </button>
         </div>
         <div class="mobile-nav-links">
-            <a href="index.html" class="mobile-nav-link active">Inicio</a>
+            <a href="index.html" class="mobile-nav-link active" aria-current="page">Inicio</a>
             <a href="about.html" class="mobile-nav-link">Sobre Mí</a>
             <a href="proyectos.html" class="mobile-nav-link">Proyectos</a>
             <a href="experience.html" class="mobile-nav-link">Experiencia</a>
@@ -82,13 +86,13 @@
     </nav>
 
     <!-- Main Content Area -->
-    <main>
+    <main id="main-content">
         <!-- Background Decorations -->
-        <div style="position: absolute; top: 80px; right: 15%; width: 384px; height: 384px; background: var(--color-tertiary-fixed); border-radius: 50%; filter: blur(140px); opacity: 0.1; z-index: -1;"></div>
-        <div style="position: absolute; bottom: 160px; left: 40px; width: 288px; height: 288px; background: var(--color-secondary-container); border-radius: 50%; filter: blur(120px); opacity: 0.2; z-index: -1;"></div>
+        <div aria-hidden="true" style="position: absolute; top: 80px; right: 15%; width: 384px; height: 384px; background: var(--color-tertiary-fixed); border-radius: 50%; filter: blur(140px); opacity: 0.1; z-index: -1;"></div>
+        <div aria-hidden="true" style="position: absolute; bottom: 160px; left: 40px; width: 288px; height: 288px; background: var(--color-secondary-container); border-radius: 50%; filter: blur(120px); opacity: 0.2; z-index: -1;"></div>
 
         <!-- Hero Section -->
-        <section class="section-hero">
+        <section class="section-hero" aria-labelledby="hero-heading">
             <div class="hero-layout">
                 <!-- Headline Column -->
                 <div class="hero-col-text">
@@ -96,7 +100,7 @@
                         <span style="padding: 4px 12px; background: rgba(171, 0, 161, 0.3); border: 1px solid rgba(255, 86, 237, 0.2); font-family: var(--font-headline); font-size: 10px; text-transform: uppercase; letter-spacing: 0.2em; color: var(--color-secondary);">Disponible</span>
                         <span style="padding: 4px 12px; background: var(--color-surface-high); font-family: var(--font-headline); font-size: 10px; text-transform: uppercase; letter-spacing: 0.2em; color: var(--color-on-surface-variant);">v1.0.25</span>
                     </div>
-                    <h1 class="hero-headline">
+                    <h1 class="hero-headline" id="hero-heading">
                         PEDRO<br><span>SILVA</span>
                     </h1>
                     <div class="hero-content">
@@ -108,14 +112,14 @@
                         </p>
                         
                         <div class="hero-actions">
-                            <button class="btn-identity" onclick="window.location.href='proyectos.html'">PROYECTOS</button>
-                            <a href="assets/Pedro_Silva_R-CV.pdf" download style="font-family: var(--font-headline); font-weight: 900; letter-spacing: 0.15em; text-transform: uppercase; color: white; border: 1px solid var(--color-outline-variant); padding: 12px 24px; display: flex; align-items: center; gap: 12px; text-decoration: none; transition: background 0.2s ease, border-color 0.2s ease; cursor: pointer;" onmouseover="this.style.background='rgba(255,255,255,0.05)'; this.style.borderColor='var(--color-primary)'" onmouseout="this.style.background='transparent'; this.style.borderColor='var(--color-outline-variant)'">
-                                <span class="material-symbols-outlined" style="font-size: 18px;">download</span>
+                            <a href="proyectos.html" class="btn-identity">PROYECTOS</a>
+                            <a href="assets/Pedro_Silva_R-CV.pdf" download aria-label="Descargar mi Curriculum Vitae en formato PDF" style="font-family: var(--font-headline); font-weight: 900; letter-spacing: 0.15em; text-transform: uppercase; color: white; border: 1px solid var(--color-outline-variant); padding: 12px 24px; display: flex; align-items: center; gap: 12px; text-decoration: none; transition: background 0.2s ease, border-color 0.2s ease; cursor: pointer;" onmouseover="this.style.background='rgba(255,255,255,0.05)'; this.style.borderColor='var(--color-primary)'" onmouseout="this.style.background='transparent'; this.style.borderColor='var(--color-outline-variant)'">
+                                <span class="material-symbols-outlined" style="font-size: 18px;" aria-hidden="true">download</span>
                                 Descargar CV
                             </a>
                             <a href="about.html" style="font-family: var(--font-headline); font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--color-secondary); display: flex; align-items: center; gap: 8px;">
                                 Sobre Mí
-                                <span class="material-symbols-outlined">arrow_right_alt</span>
+                                <span class="material-symbols-outlined" aria-hidden="true">arrow_right_alt</span>
                             </a>
                         </div>
                     </div>
@@ -146,7 +150,7 @@
                             <p style="font-size: 13px; color: var(--color-on-surface); line-height: 1.4;">Vue.js 3, Firebase, WordPress, JS (ES6+)</p>
                         </div>
                         <div style="position: absolute; top: 40px; right: -15px; padding: 20px; background: rgba(171, 0, 161, 0.7); backdrop-filter: blur(20px); border: 1px solid rgba(255, 86, 237, 0.2); transform: rotate(3deg); z-index: 20;">
-                            <span class="material-symbols-outlined" style="color: var(--color-secondary); font-size: 28px; margin-bottom: 8px;">psychology</span>
+                            <span class="material-symbols-outlined" style="color: var(--color-secondary); font-size: 28px; margin-bottom: 8px;" aria-hidden="true">psychology</span>
                             <p style="font-family: var(--font-headline); font-size: 10px; text-transform: uppercase; letter-spacing: 0.2em; color: white; margin-bottom: 4px;">Enfoque</p>
                             <p style="font-family: var(--font-headline); font-weight: 700; font-size: 1rem; color: white;">Scrum · CS</p>
                         </div>
@@ -156,43 +160,45 @@
         </section>
 
         <!-- Propuesta de Valor -->
-        <section class="bento-grid">
+        <section class="bento-grid" aria-label="Propuesta de valor y servicios">
             <div class="bento-item">
                 <div style="width: 48px; height: 48px; background: rgba(161, 166, 255, 0.2); display: flex; align-items: center; justify-content: center; margin-bottom: 32px;">
-                    <span class="material-symbols-outlined" style="color: var(--color-primary);">code</span>
+                    <span class="material-symbols-outlined" style="color: var(--color-primary);" aria-hidden="true">code</span>
                 </div>
-                <h3>Desarrollo Web</h3>
+                <h2>Desarrollo Web</h2>
                 <p style="color: var(--color-on-surface-variant);">Interfaces rápidas, accesibles y centradas en el usuario. De Vue.js a WordPress, construyo con estándares WCAG y foco en conversión.</p>
             </div>
             <div class="bento-item bento-secondary">
                 <div style="width: 48px; height: 48px; background: rgba(255, 86, 237, 0.2); display: flex; align-items: center; justify-content: center; margin-bottom: 32px;">
-                    <span class="material-symbols-outlined" style="color: var(--color-secondary);">inventory_2</span>
+                    <span class="material-symbols-outlined" style="color: var(--color-secondary);" aria-hidden="true">inventory_2</span>
                 </div>
-                <h3>Gestión de Producto</h3>
+                <h2>Gestión de Producto</h2>
                 <p style="color: var(--color-on-surface-variant);">Traduzco requerimientos de negocio en roadmaps claros. Scrum, historias de usuario e IA al servicio de la entrega de valor.</p>
             </div>
             <div class="bento-item bento-tertiary">
                 <div style="width: 48px; height: 48px; background: rgba(243, 255, 202, 0.2); display: flex; align-items: center; justify-content: center; margin-bottom: 32px;">
-                    <span class="material-symbols-outlined" style="color: var(--color-tertiary);">support_agent</span>
+                    <span class="material-symbols-outlined" style="color: var(--color-tertiary);" aria-hidden="true">support_agent</span>
                 </div>
-                <h3>CX & Calidad</h3>
+                <h2>CX & Calidad</h2>
                 <p style="color: var(--color-on-surface-variant);">Más de 5 años garantizando la satisfacción del cliente. Testeando interfaces y cerrando la brecha entre usuarios y producto.</p>
             </div>
         </section>
 
         <!-- Footer Area -->
         <footer>
-            <div class="footer-bg-text">PORTAFOLIO</div>
+            <div class="footer-bg-text" aria-hidden="true">PORTAFOLIO</div>
             <div style="position: relative; z-index: 10;">
-                <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px;">
-                    <span style="background: var(--color-primary); color: #0600a5; width: 32px; height: 32px; display: inline-flex; align-items: center; justify-content: center; font-family: var(--font-headline); font-size: 11px; font-weight: 900; flex-shrink: 0;">NW</span>
+                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 20px;">
+                    <span style="width: 32px; height: 32px; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; overflow: hidden; border-radius: 4px;">
+                        <img src="img/logo_nexo.webp" alt="" aria-hidden="true" style="width: 100%; height: 100%; object-fit: contain;">
+                    </span>
                     <span style="font-family: var(--font-headline); font-size: 1rem; font-weight: 900; color: var(--color-primary); text-transform: uppercase; letter-spacing: 0.05em;">NexoWeb</span>
                 </div>
                 <p style="font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--color-on-surface-variant);">©<span id="copyright-year">2025</span> NexoWeb · Pedro Silva</p>
                 <div style="margin-top: 16px; display: flex; gap: 32px;">
                     <a href="#" style="font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase;">GitHub</a>
                     <a href="#" style="font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase;">LinkedIn</a>
-                    <a href="https://wa.me/56997236064?text=Hola%20Pedro%2C%20estuve%20viendo%20tu%20portafolio%20y%20me%20interesa%20tu%20perfil%20h%C3%ADbrido%20(Tech%2BCX).%20Me%20gustar%C3%ADa%20conversar%20contigo." target="_blank" rel="noopener noreferrer" style="font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase;">WhatsApp</a>
+                    <a href="https://wa.me/56997236064?text=Hola%20Pedro%2C%20estuve%20viendo%20tu%20portafolio%20y%20me%20interesa%20tu%20perfil%20h%C3%ADbrido%20(Tech%2BCX).%20Me%20gustar%C3%ADa%20conversar%20contigo." target="_blank" rel="noopener noreferrer" style="font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase;" aria-label="WhatsApp de Pedro Silva">WhatsApp</a>
                 </div>
             </div>
             <div style="position: relative; z-index: 10; text-align: right;">
@@ -204,8 +210,8 @@
 
     <!-- WhatsApp FAB -->
     <div style="position: fixed; bottom: 48px; right: 48px; z-index: 50;">
-        <a href="https://wa.me/56997236064?text=Hola%20Pedro%2C%20estuve%20viendo%20tu%20portafolio%20y%20me%20interesa%20tu%20perfil%20h%C3%ADbrido%20(Tech%2BCX).%20Me%20gustar%C3%ADa%20conversar%20contigo." target="_blank" rel="noopener noreferrer" title="Eschíbeme por WhatsApp" style="width: 64px; height: 64px; background: var(--color-tertiary-fixed); color: #516700; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 20px 40px rgba(202,253,0,0.15); text-decoration: none; transition: transform 0.2s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
-            <span class="material-symbols-outlined" style="font-size: 32px; font-variation-settings: 'FILL' 1;">chat_bubble</span>
+        <a href="https://wa.me/56997236064?text=Hola%20Pedro%2C%20estuve%20viendo%20tu%20portafolio%20y%20me%20interesa%20tu%20perfil%20h%C3%ADbrido%20(Tech%2BCX).%20Me%20gustar%C3%ADa%20conversar%20contigo." target="_blank" rel="noopener noreferrer" title="Escríbeme por WhatsApp" aria-label="Enviar un mensaje por WhatsApp" style="width: 64px; height: 64px; background: var(--color-tertiary-fixed); color: #2b3a00; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 20px 40px rgba(202,253,0,0.15); text-decoration: none; transition: transform 0.2s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+            <span class="material-symbols-outlined" style="font-size: 32px; font-variation-settings: 'FILL' 1;" aria-hidden="true">chat_bubble</span>
         </a>
     </div>
 

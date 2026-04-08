@@ -85,39 +85,62 @@
             color: var(--color-primary);
         }
 
-        @media (max-width: 1024px) {
+        /* ── Responsividad Local (agileinception.html) ───────── */
+        @media screen and (max-width: 1024px) {
             .project-layout { grid-template-columns: 1fr !important; }
-            .sidebar-info { position: static !important; }
+            .sidebar-info { position: relative !important; top: 0 !important; }
+        }
+
+        @media screen and (max-width: 768px) {
+            main {
+                padding-top: 96px !important;
+                padding-left: 0 !important;
+            }
+            .topbar-nav {
+                display: none !important;
+            }
+            section[style*="padding: 48px"] {
+                padding: 32px 24px !important;
+            }
+            .project-layout {
+                padding: 32px 24px !important;
+                gap: 48px !important;
+            }
+            .sidebar-info > div {
+                padding: 24px !important;
+            }
         }
     </style>
 </head>
 <body>
+    <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+
     <!-- Side Navigation Bar -->
-    <nav class="sidenav">
+    <nav class="sidenav" aria-label="Navegación lateral">
         <div>
             <div class="sidenav-logo">PS</div>
             <div class="sidenav-links">
                 <a href="index.html" class="sidenav-link">
-                    <span class="material-symbols-outlined">person</span>
+                    <span class="material-symbols-outlined" aria-hidden="true">person</span>
                     <small>Inicio</small>
                 </a>
                 <a href="about.html" class="sidenav-link">
-                    <span class="material-symbols-outlined">history_edu</span>
+                    <span class="material-symbols-outlined" aria-hidden="true">history_edu</span>
                     <small>Sobre Mí</small>
                 </a>
-                <a href="proyectos.html" class="sidenav-link active">
-                    <span class="material-symbols-outlined">grid_view</span>
+                <a href="proyectos.html" class="sidenav-link active" aria-current="page">
+                    <span class="material-symbols-outlined" aria-hidden="true">grid_view</span>
                     <small>Proyectos</small>
                 </a>
             </div>
         </div>
         <div style="display: flex; flex-direction: column; align-items: center; gap: 24px;">
             <a href="experience.html" class="sidenav-link">
-                <span class="material-symbols-outlined">folder_open</span>
+                <span class="material-symbols-outlined" aria-hidden="true">folder_open</span>
                 <small>Experiencia</small>
             </a>
             <div style="width: 40px; height: 40px; border: 1px solid var(--color-outline-variant); overflow: hidden;">
-                <img src="img/pedro3.png" alt="Profile" style="width: 100%; height: 100%; object-fit: cover;">
+                <img src="img/pedro3.webp" alt="Foto de perfil de Pedro Silva" style="width: 100%; height: 100%; object-fit: cover;">
             </div>
         </div>
     </nav>
@@ -125,40 +148,62 @@
     <!-- Top App Bar -->
     <header class="topbar" id="topbar">
         <div class="topbar-title">PORTAFOLIO_PS</div>
-        <nav class="topbar-nav" aria-label="Navegación del Proyecto">
+        <nav class="desktop-nav topbar-nav" aria-label="Navegación del Proyecto">
             <a href="#contexto" class="topbar-nav-link">Contexto</a>
             <a href="#solucion" class="topbar-nav-link">Solución</a>
         </nav>
-        <div style="display: flex; align-items: center; gap: 24px;">
-            <span class="material-symbols-outlined" style="cursor: pointer;">dark_mode</span>
-            <button class="btn-connect" onclick="window.location.href='experience.html#contacto'">Contactar</button>
+        <div class="topbar-actions">
+            <button class="theme-toggle" aria-label="Cambiar tema de color" style="background: none; border: none; color: inherit; padding: 0; cursor: pointer;">
+                <span class="material-symbols-outlined" style="display: block;">dark_mode</span>
+            </button>
+            <a href="experience.html#contacto" class="btn-connect">Contactar</a>
+            <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú móvil">
+                <span class="material-symbols-outlined" aria-hidden="true">menu</span>
+            </button>
         </div>
     </header>
 
-    <main style="padding-top: 128px; padding-left: 112px;">
+    <!-- Mobile Navigation Drawer -->
+    <div class="mobile-nav-overlay" id="mobile-nav-overlay"></div>
+    <nav class="mobile-nav-drawer" id="mobile-nav-drawer" aria-label="Navegación móvil">
+        <div class="mobile-nav-header">
+            <div class="sidenav-logo">PS</div>
+            <button class="menu-close" id="menu-close" aria-label="Cerrar menú móvil">
+                <span class="material-symbols-outlined" aria-hidden="true">close</span>
+            </button>
+        </div>
+        <div class="mobile-nav-links">
+            <a href="index.html" class="mobile-nav-link">Inicio</a>
+            <a href="about.html" class="mobile-nav-link">Sobre Mí</a>
+            <a href="proyectos.html" class="mobile-nav-link active" aria-current="page">Proyectos</a>
+            <a href="experience.html" class="mobile-nav-link">Experiencia</a>
+        </div>
+    </nav>
+
+    <main id="main-content" style="padding-top: 128px; padding-left: 112px;">
         <!-- Glow deco -->
-        <div style="position: absolute; top: 80px; right: -5%; width: 320px; height: 320px; background: rgba(255,86,237,0.06); border-radius: 50%; filter: blur(100px); z-index: -1; pointer-events: none;"></div>
+        <div aria-hidden="true" style="position: absolute; top: 80px; right: -5%; width: 320px; height: 320px; background: rgba(255,86,237,0.06); border-radius: 50%; filter: blur(100px); z-index: -1; pointer-events: none;"></div>
 
         <!-- ═══ HERO PROYECTO ════════════════════════════════════════════ -->
-        <section style="padding: 48px; border-bottom: 1px solid var(--color-outline-variant); position: relative; background: var(--color-surface-low);">
-            <div class="pixel-grid" style="position: absolute; inset: 0; opacity: 0.1; pointer-events: none;"></div>
+        <section style="padding: 48px; border-bottom: 1px solid var(--color-outline-variant); position: relative; background: var(--color-surface-low);" aria-labelledby="hero-heading">
+            <div class="pixel-grid" aria-hidden="true" style="position: absolute; inset: 0; opacity: 0.1; pointer-events: none;"></div>
             <div style="position: relative; z-index: 10;">
                 <a href="proyectos.html#section-po" style="color: var(--color-on-surface-variant); text-decoration: none; display: inline-flex; align-items: center; gap: 6px; font-family: var(--font-headline); font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 32px; transition: color 0.2s ease;" onmouseover="this.style.color='white'" onmouseout="this.style.color='var(--color-on-surface-variant)'">
-                    <span class="material-symbols-outlined" style="font-size: 16px;">arrow_back</span>
+                    <span class="material-symbols-outlined" style="font-size: 16px;" aria-hidden="true">arrow_back</span>
                     Volver a Proyectos
                 </a>
                 <br>
                 <span class="card-badge badge-po" style="margin-bottom: 24px;">
-                    <span class="badge-dot"></span><span style="font-family: var(--font-headline);">PRODUCT OWNER</span>
+                    <span class="badge-dot" aria-hidden="true"></span><span style="font-family: var(--font-headline);">PRODUCT OWNER</span>
                 </span>
-                <h1 style="font-family: var(--font-headline); font-size: clamp(3rem, 6vw, 6rem); font-weight: 900; text-transform: uppercase; line-height: 0.9; margin-bottom: 16px; color: white;">
+                <h1 id="hero-heading" style="font-family: var(--font-headline); font-size: clamp(3rem, 6vw, 6rem); font-weight: 900; text-transform: uppercase; line-height: 0.9; margin-bottom: 16px; color: white;">
                     AGILE INCEPTION
                 </h1>
                 <p style="font-size: 1.5rem; color: var(--color-secondary); font-weight: 700; margin-bottom: 24px;">Centralización de Plataforma EdTech</p>
                 <div style="display: flex; gap: 16px; margin-bottom: 20px;">
                     <a href="https://github.com/Pedro-Silva-R/EdTech-Agile-Inception" target="_blank" rel="noopener noreferrer" style="background: var(--color-secondary); color: #4b0054; padding: 12px 32px; font-family: var(--font-headline); font-weight: 900; text-transform: uppercase; letter-spacing: 0.15em; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: background 0.2s ease;" onmouseover="this.style.background='white'" onmouseout="this.style.background='var(--color-secondary)'">
                         <span>Ver Repositorio</span>
-                        <span class="material-symbols-outlined" style="font-size: 18px;">arrow_outward</span>
+                        <span class="material-symbols-outlined" style="font-size: 18px;" aria-hidden="true">arrow_outward</span>
                     </a>
                 </div>
             </div>
@@ -172,7 +217,7 @@
                 <p>Una plataforma digital de aprendizaje para estudiantes y docentes de enseñanza media presentaba una <strong>experiencia fragmentada y frustrante</strong>: los usuarios debían navegar por múltiples sistemas, generando tiempos de búsqueda superiores a 15 minutos y una alta tasa de abandono de la plataforma.</p>
 
                 <div class="project-img-wrapper" style="margin: 48px 0; overflow: hidden; border: 1px solid var(--color-outline-variant); border-top: 3px solid var(--color-secondary); background: var(--color-surface-high); position: relative;">
-                    <div class="pixel-grid" style="position: absolute; inset: 0; opacity: 0.1; pointer-events: none; z-index: 0;"></div>
+                    <div class="pixel-grid" aria-hidden="true" style="position: absolute; inset: 0; opacity: 0.1; pointer-events: none; z-index: 0;"></div>
                     <img src="assets/AgileInception_1.webp" alt="Elevator Pitch Agile Inception" style="width: 100%; height: auto; display: block; position: relative; z-index: 10; opacity: 0.9; transition: transform 0.5s ease, opacity 0.5s ease; cursor: pointer;" onmouseover="this.style.transform='scale(1.03)'; this.style.opacity='1'" onmouseout="this.style.transform='scale(1)'; this.style.opacity='0.9'">
                 </div>
 
@@ -204,13 +249,13 @@
                 </ul>
 
                 <div class="project-img-wrapper" style="margin: 48px 0; overflow: hidden; border: 1px solid var(--color-outline-variant); border-top: 3px solid var(--color-secondary); background: var(--color-surface-high); position: relative;">
-                    <div class="pixel-grid" style="position: absolute; inset: 0; opacity: 0.1; pointer-events: none; z-index: 0;"></div>
+                    <div class="pixel-grid" aria-hidden="true" style="position: absolute; inset: 0; opacity: 0.1; pointer-events: none; z-index: 0;"></div>
                     <img src="assets/AgileInception_2.webp" alt="Story Map Agile Inception" style="width: 100%; height: auto; display: block; position: relative; z-index: 10; opacity: 0.9; transition: transform 0.5s ease, opacity 0.5s ease; cursor: pointer;" onmouseover="this.style.transform='scale(1.03)'; this.style.opacity='1'" onmouseout="this.style.transform='scale(1)'; this.style.opacity='0.9'">
                 </div>
 
                 <div style="background: rgba(38,38,38,0.7); border: 1px solid var(--color-outline-variant); padding: 24px; border-radius: 8px; margin-top: 48px;">
                     <div style="display: flex; gap: 12px; align-items: center; margin-bottom: 16px;">
-                        <span class="material-symbols-outlined" style="color: var(--color-tertiary-fixed);">info</span>
+                        <span class="material-symbols-outlined" style="color: var(--color-tertiary-fixed);" aria-hidden="true">info</span>
                         <h4 style="font-family: var(--font-headline); color: white; margin: 0; text-transform: uppercase;">Nota</h4>
                     </div>
                     <p style="margin: 0; font-size: 14px;">Proyecto desarrollado como <strong>Caso de Estudio</strong> durante el curso de Product Owner. Demuestra capacidad de facilitar el alineamiento de equipos y definir alcances de producto con criterio estratégico.</p>
@@ -224,11 +269,11 @@
                     <h3 style="font-family: var(--font-headline); font-size: 14px; color: var(--color-secondary); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 24px;">Impacto Proyectado</h3>
                     <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 20px;">
                         <li style="display: flex; align-items: flex-start; gap: 16px;">
-                            <span class="material-symbols-outlined" style="color: var(--color-tertiary-fixed); font-size: 24px; margin-top: 2px;">timer</span>
+                            <span class="material-symbols-outlined" style="color: var(--color-tertiary-fixed); font-size: 24px; margin-top: 2px;" aria-hidden="true">timer</span>
                             <div><strong style="color: white; display: block; font-size: 18px; line-height: 1.2;">-40%</strong> <span style="font-size: 13px;">Tiempos de búsqueda</span></div>
                         </li>
                         <li style="display: flex; align-items: flex-start; gap: 16px;">
-                            <span class="material-symbols-outlined" style="color: var(--color-tertiary-fixed); font-size: 24px; margin-top: 2px;">all_inclusive</span>
+                            <span class="material-symbols-outlined" style="color: var(--color-tertiary-fixed); font-size: 24px; margin-top: 2px;" aria-hidden="true">all_inclusive</span>
                             <div><strong style="color: white; display: block; font-size: 18px; line-height: 1.2;">85%</strong> <span style="font-size: 13px;">Centralización de recursos</span></div>
                         </li>
                     </ul>
@@ -266,31 +311,34 @@
             </div>
         </section>
 
-        <!-- Footer -->
-        <footer style="padding: 48px; border-top: 1px solid var(--color-outline-variant); display: flex; justify-content: space-between; align-items: flex-end;">
-            <div>
-                <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px;">
-                    <span style="background: var(--color-primary); color: #0600a5; width: 32px; height: 32px; display: inline-flex; align-items: center; justify-content: center; font-family: var(--font-headline); font-size: 11px; font-weight: 900; flex-shrink: 0;">NW</span>
+        <!-- Footer Area -->
+        <footer>
+            <div class="footer-bg-text" aria-hidden="true">PORTAFOLIO</div>
+            <div style="position: relative; z-index: 10;">
+                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 20px;">
+                    <span style="width: 32px; height: 32px; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; overflow: hidden; border-radius: 4px;">
+                        <img src="img/logo_nexo.webp" alt="" aria-hidden="true" style="width: 100%; height: 100%; object-fit: contain;">
+                    </span>
                     <span style="font-family: var(--font-headline); font-size: 1rem; font-weight: 900; color: var(--color-primary); text-transform: uppercase; letter-spacing: 0.05em;">NexoWeb</span>
                 </div>
                 <p style="font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--color-on-surface-variant);">©<span id="copyright-year">2025</span> NexoWeb · Pedro Silva</p>
                 <div style="margin-top: 16px; display: flex; gap: 32px;">
-                    <a href="#" style="font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--color-on-surface-variant); text-decoration: none;">GitHub</a>
-                    <a href="#" style="font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--color-on-surface-variant); text-decoration: none;">LinkedIn</a>
-                    <a href="https://wa.me/56997236064?text=Hola%20Pedro%2C%20estuve%20viendo%20tu%20portafolio%20y%20me%20interesa%20tu%20perfil%20h%C3%ADbrido%20(Tech%2BCX).%20Me%20gustar%C3%ADa%20conversar%20contigo." target="_blank" rel="noopener noreferrer" style="font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--color-on-surface-variant); text-decoration: none;">WhatsApp</a>
+                    <a href="#" style="font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase;">GitHub</a>
+                    <a href="#" style="font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase;">LinkedIn</a>
+                    <a href="https://wa.me/56997236064?text=Hola%20Pedro%2C%20estuve%20viendo%20tu%20portafolio%20y%20me%20interesa%20tu%20perfil%20h%C3%ADbrido%20(Tech%2BCX).%20Me%20gustar%C3%ADa%20conversar%20contigo." target="_blank" rel="noopener noreferrer" style="font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase;">WhatsApp</a>
                 </div>
             </div>
-            <div style="text-align: right;">
-                <p style="font-family: var(--font-headline); font-size: 4rem; font-weight: 900; color: var(--color-tertiary); text-transform: uppercase; line-height: 1;">Trabajemos<br>Juntos</p>
-                <p style="font-family: var(--font-headline); font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--color-primary); margin-top: 16px;">Santiago, Chile · Remoto / Híbrido</p>
+            <div style="position: relative; z-index: 10; text-align: right;">
+                <div class="footer-title">Trabajemos<br>Juntos</div>
+                <p class="footer-subtitle">Santiago, Chile · Remoto / Híbrido</p>
             </div>
         </footer>
     </main>
 
     <!-- WhatsApp FAB -->
     <div style="position: fixed; bottom: 48px; right: 48px; z-index: 50;">
-        <a href="https://wa.me/56997236064?text=Hola%20Pedro%2C%20estuve%20viendo%20tu%20portafolio%20y%20me%20interesa%20tu%20perfil%20h%C3%ADbrido%20(Tech%2BCX).%20Me%20gustar%C3%ADa%20conversar%20contigo." target="_blank" rel="noopener noreferrer" title="Escríbeme por WhatsApp" style="width: 64px; height: 64px; background: var(--color-tertiary-fixed); color: #516700; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 20px 40px rgba(202,253,0,0.15); text-decoration: none; transition: transform 0.2s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
-            <span class="material-symbols-outlined" style="font-size: 32px; font-variation-settings: 'FILL' 1;">chat_bubble</span>
+        <a href="https://wa.me/56997236064?text=Hola%20Pedro%2C%20estuve%20viendo%20tu%20portafolio%20y%20me%20interesa%20tu%20perfil%20h%C3%ADbrido%20(Tech%2BCX).%20Me%20gustar%C3%ADa%20conversar%20contigo." target="_blank" rel="noopener noreferrer" title="Escríbeme por WhatsApp" aria-label="Enviar mensaje por WhatsApp" style="width: 64px; height: 64px; background: var(--color-tertiary-fixed); color: #2b3a00; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 20px 40px rgba(202,253,0,0.15); text-decoration: none; transition: transform 0.2s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+            <span class="material-symbols-outlined" style="font-size: 32px; font-variation-settings: 'FILL' 1;" aria-hidden="true">chat_bubble</span>
         </a>
     </div>
 
