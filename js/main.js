@@ -143,17 +143,23 @@ document.addEventListener('DOMContentLoaded', () => {
             submitBtn.disabled = true;
             submitBtn.textContent = 'ENVIANDO...';
             statusMsg.textContent = 'INICIANDO CONEXIÓN...';
-            statusMsg.className = 'form-status-msg status-pending';
+            statusMsg.className = 'form-status-msg sending';
 
             // EmailJS Transmission
             // Replace with your Service ID and Template ID
             const SERVICE_ID = "service_qcdkiuq";
             const TEMPLATE_ID = "template_o2rmmmr";
 
-            emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, contactForm)
+            const templateParams = {
+                from_name: document.getElementById('user_name').value.trim(),
+                reply_to: document.getElementById('user_email').value.trim(),
+                message: document.getElementById('message').value.trim()
+            };
+
+            emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams)
                 .then(() => {
                     statusMsg.textContent = '¡Mensaje enviado con éxito! Responderé a la brevedad. 🚀';
-                    statusMsg.className = 'form-status-msg status-success';
+                    statusMsg.className = 'form-status-msg success';
                     contactForm.reset();
                     charCounter.textContent = "0";
                     submitBtn.textContent = 'ENVIAR_MENSAJE';
@@ -161,7 +167,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }, (error) => {
                     console.error('EmailJS Error:', error);
                     statusMsg.textContent = 'Error de conexión. Intenta de nuevo o escríbeme por WhatsApp.';
-                    statusMsg.className = 'form-status-msg status-error';
+                    statusMsg.className = 'form-status-msg error';
                     submitBtn.textContent = 'REINTENTAR';
                     submitBtn.disabled = false;
                 });
