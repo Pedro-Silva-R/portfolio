@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const contactForm = document.getElementById('contact-form');
     if (contactForm) {
         // Initialize EmailJS (Placeholder - User should replace this)
-        const PUBLIC_KEY = "TU_PUBLIC_KEY_AQUÍ";
+        const PUBLIC_KEY = "JE5QnP5Oc4Vcj3SgK";
         if (typeof emailjs !== 'undefined') {
             emailjs.init(PUBLIC_KEY);
         }
@@ -147,8 +147,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // EmailJS Transmission
             // Replace with your Service ID and Template ID
-            const SERVICE_ID = "TU_SERVICE_ID_AQUÍ";
-            const TEMPLATE_ID = "TU_TEMPLATE_ID_AQUÍ";
+            const SERVICE_ID = "service_qcdkiuq";
+            const TEMPLATE_ID = "template_o2rmmmr";
 
             emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, contactForm)
                 .then(() => {
