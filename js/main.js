@@ -158,8 +158,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
             emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams)
                 .then(() => {
-                    statusMsg.textContent = '¡Mensaje enviado con éxito! Responderé a la brevedad. 🚀';
-                    statusMsg.className = 'form-status-msg success';
+                    // Success: Hide form, show dedicated UI
+                    contactForm.style.display = 'none';
+                    document.getElementById('success-state').style.display = 'flex';
+                    
+                    // Reset internal form state silently
+                    statusMsg.className = 'form-status-msg';
+                    statusMsg.textContent = '';
                     contactForm.reset();
                     charCounter.textContent = "0";
                     submitBtn.textContent = 'ENVIAR_MENSAJE';
@@ -172,6 +177,15 @@ document.addEventListener('DOMContentLoaded', () => {
                     submitBtn.disabled = false;
                 });
         });
+
+        // "Send Another Message" Handler
+        const btnNewMessage = document.getElementById('btn-new-message');
+        if (btnNewMessage) {
+            btnNewMessage.addEventListener('click', () => {
+                document.getElementById('success-state').style.display = 'none';
+                contactForm.style.display = 'flex';
+            });
+        }
     }
 
     // 6. Dynamic Copyright Year
